@@ -13,4 +13,8 @@ public interface ProductMapper {
     @Select("SELECT * FROM `product`")
     List<Product> findAll();
 
+    // 根据商品ID查询指定商品
+    @Select("SELECT * FROM product WHERE product_id=#{id}")
+    Product findOne(BigInteger id);
+
 }

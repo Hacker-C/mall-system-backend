@@ -22,6 +22,7 @@ public class ProductCategoryService {
         return productCategoryMapper.findAll();
     }
 
+    // 根据 category_id 查询此类所有商品
     public List<Product> findById(BigInteger categoryId) {
         return productCategoryMapper.findById(categoryId);
     }

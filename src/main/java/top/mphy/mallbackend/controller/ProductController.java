@@ -17,10 +17,16 @@ public class ProductController {
         this.productService = productService;
     }
 
-    // 获取所有商品
+    // *获取所有商品
     @GetMapping("/all")
     public List<Product> findAll() {
         return productService.findAll();
+    }
+
+    // *根据商品ID查询指定商品
+    @GetMapping("/{id}")
+    public Product findOne(@PathVariable("id") BigInteger id) {
+        return productService.findOne(id);
     }
 
 }

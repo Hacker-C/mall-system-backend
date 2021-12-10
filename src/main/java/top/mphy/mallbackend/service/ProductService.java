@@ -22,5 +22,9 @@ public class ProductService {
         return productMapper.findAll();
     }
 
+    // *根据商品ID查询指定商品
+    public Product findOne(BigInteger id) {
+        return productMapper.findOne(id);
+    }
 
 }
