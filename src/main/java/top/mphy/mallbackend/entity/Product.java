@@ -31,4 +31,6 @@ public class Product {
     private int categoryId;
     // 商品所属店的id
     private String shopId;
+    // 商品重量
+    private String weight;
 }
