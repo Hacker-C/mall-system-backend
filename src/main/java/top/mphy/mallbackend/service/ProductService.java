@@ -2,8 +2,10 @@ package top.mphy.mallbackend.service;
 
 import org.springframework.stereotype.Service;
 import top.mphy.mallbackend.entity.Product;
+import top.mphy.mallbackend.entity.ProductCategory;
 import top.mphy.mallbackend.mapper.ProductMapper;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @Service
@@ -15,7 +17,10 @@ public class ProductService {
         this.productMapper = productMapper;
     }
 
+    // *查询所有商品数据
     public List<Product> findAll() {
         return productMapper.findAll();
     }
+
+
 }

@@ -1,11 +1,10 @@
 package top.mphy.mallbackend.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import top.mphy.mallbackend.entity.Product;
 import top.mphy.mallbackend.service.ProductService;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @RestController
@@ -18,8 +17,10 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping
+    // 获取所有商品
+    @GetMapping("/all")
     public List<Product> findAll() {
         return productService.findAll();
     }
+
 }
