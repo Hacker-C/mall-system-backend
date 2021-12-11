@@ -29,4 +29,16 @@ public class ProductController {
         return productService.findOne(id);
     }
 
+    // *查询最新上架商品：指定日期之后
+    @GetMapping("/new")
+    public List<Product> finNew() {
+        return productService.findNew();
+    }
+
+    // *查询热门商品，销量高于指定售货量的商品
+    @GetMapping("/hot")
+    public List<Product> findHot() {
+        return productService.findHot();
+    }
+
 }

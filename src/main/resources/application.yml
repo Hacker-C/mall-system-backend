@@ -4,6 +4,8 @@ spring:
     name: mall-backend
   profiles:
     active: dev
+  jackson:
+    date-format: yyyy-MM-dd
   datasource:
     # 数据库驱动
     driver-class-name: com.mysql.cj.jdbc.Driver

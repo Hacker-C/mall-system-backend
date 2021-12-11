@@ -27,4 +27,13 @@ public class ProductService {
         return productMapper.findOne(id);
     }
 
+    // *查询最新上架商品：指定日期之后
+    public List<Product> findNew() {
+        return productMapper.findNew();
+    }
+
+    // *查询热门商品，销量高于指定售货量的商品
+    public List<Product> findHot() {
+        return productMapper.findHot();
+    }
 }

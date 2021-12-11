@@ -17,4 +17,12 @@ public interface ProductMapper {
     @Select("SELECT * FROM product WHERE product_id=#{id}")
     Product findOne(BigInteger id);
 
+    // 查询最新上架商品：指定日期之后
+    @Select("SELECT * FROM product WHERE DATE_FORMAT(create_time, '%Y-%m-%d') >= '2021-12-10'")
+    List<Product> findNew();
+
+    // 查询热门商品，销量高于指定售货量的商品
+    @Select("SELECT * FROM product WHERE sold >= 500")
+    List<Product> findHot();
+
 }
