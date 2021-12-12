@@ -13,8 +13,14 @@ public class UserService {
         this.userMapper = userMapper;
     }
 
+    // 登录验证，根据用户名查询用户
     public User getUserByUsername(String username) {
         return userMapper.getUserByUsername(username);
+    }
+
+    // 注册验证
+    public void userRegister(User user) {
+        userMapper.save(user);
     }
 
 }
