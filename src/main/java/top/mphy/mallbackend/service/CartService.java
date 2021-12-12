@@ -20,4 +20,9 @@ public class CartService {
         return cartMapper.getCartById(userId);
     }
 
+    // 修改某一个购物车商品的数量
+    public void setCartCount(BigInteger cartId, BigInteger count) {
+        cartMapper.setCartCount(cartId, count);
+    }
+
 }
