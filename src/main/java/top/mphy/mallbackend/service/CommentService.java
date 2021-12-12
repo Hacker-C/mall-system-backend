@@ -1,6 +1,5 @@
 package top.mphy.mallbackend.service;
 
-import org.apache.ibatis.annotations.Delete;
 import org.springframework.stereotype.Service;
 import top.mphy.mallbackend.entity.DetailsComment;
 import top.mphy.mallbackend.mapper.CommentMapper;
@@ -18,6 +17,10 @@ public class CommentService {
 
     public List<DetailsComment> findCommentsById(BigInteger productId) {
         return commentMapper.findCommentsById(productId);
+    }
+
+    public BigInteger getCountById(BigInteger productId) {
+        return commentMapper.getCountById(productId);
     }
 
 }

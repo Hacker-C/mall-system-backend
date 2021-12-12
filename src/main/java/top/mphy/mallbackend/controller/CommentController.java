@@ -25,4 +25,9 @@ public class CommentController {
         return commentService.findCommentsById(productId);
     }
 
+    @GetMapping("count/{productId}")
+    public BigInteger getCountById(@PathVariable("productId") BigInteger productId) {
+        return commentService.getCountById(productId);
+    }
+
 }
