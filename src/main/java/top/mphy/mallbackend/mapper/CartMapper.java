@@ -22,4 +22,12 @@ public interface CartMapper {
     // 获取某个用户的购物车信息的数量
     @Select("SELECT COUNT(*) FROM cart WHERE user_id=#{userId}")
     BigInteger getCartCountById(BigInteger userId);
+
+    // 用户添加商品到购物车
+    @Select("INSERT INTO cart(user_id, product_id) VALUE(#{userId}, #{productId})")
+    void addToCart(@Param("userId") BigInteger userId, @Param("productId") BigInteger productId);
+
+    // 检验用户是否收藏了某一件商品
+    @Select("SELECT * FROM cart WHERE user_id=#{userId} AND product_id=#{productId}")
+    Cart findCartItem(@Param("userId") BigInteger userId, @Param("productId") BigInteger productId);
 }

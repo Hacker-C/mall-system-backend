@@ -29,4 +29,14 @@ public class CartService {
     public BigInteger getCartCountById(BigInteger userId) {
         return cartMapper.getCartCountById(userId);
     }
+
+    // 用户添加商品到购物车
+    public void addToCart(BigInteger userId, BigInteger productId) {
+        cartMapper.addToCart(userId, productId);
+    }
+
+    // 检验用户是否收藏了某一件商品
+    public Cart findCartItem(BigInteger userId, BigInteger productId) {
+        return cartMapper.findCartItem(userId, productId);
+    }
 }

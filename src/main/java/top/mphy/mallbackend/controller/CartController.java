@@ -39,4 +39,17 @@ public class CartController {
     public BigInteger getCartCount(@PathVariable("userId") BigInteger userId) {
         return cartService.getCartCountById(userId);
     }
+
+    // 用户添加商品到购物车
+    @PostMapping
+    public ResponseData addToCart(@RequestBody Cart user) {
+        BigInteger userId = user.getUserId();
+        BigInteger productId = user.getProductId();
+        Cart cart = cartService.findCartItem(userId, productId);
+        if (cart != null) {
+            return ResponseDataUtils.buildSuccess("1", "您已将该商品加入购物车！");
+        }
+        cartService.addToCart(userId, productId);
+        return ResponseDataUtils.buildSuccess("0", "成功加入到购物车！");
+    }
 }
