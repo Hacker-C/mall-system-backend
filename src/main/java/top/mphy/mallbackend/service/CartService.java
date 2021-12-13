@@ -39,4 +39,9 @@ public class CartService {
     public Cart findCartItem(BigInteger userId, BigInteger productId) {
         return cartMapper.findCartItem(userId, productId);
     }
+
+    //  删除某用户的某一条购物车商品信息
+    public void deteleCartItem(BigInteger userId) {
+        cartMapper.deteleCartItem(userId);
+    }
 }

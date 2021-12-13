@@ -30,4 +30,8 @@ public interface CartMapper {
     // 检验用户是否收藏了某一件商品
     @Select("SELECT * FROM cart WHERE user_id=#{userId} AND product_id=#{productId}")
     Cart findCartItem(@Param("userId") BigInteger userId, @Param("productId") BigInteger productId);
+
+    // 删除某用户的某一条购物车商品信息
+    @Select("DELETE FROM cart WHERE cart_id=#{cartId}")
+    void deteleCartItem(BigInteger cartId);
 }

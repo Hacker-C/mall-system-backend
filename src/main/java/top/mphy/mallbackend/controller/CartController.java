@@ -1,5 +1,6 @@
 package top.mphy.mallbackend.controller;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.*;
 import top.mphy.mallbackend.common.ResponseData;
@@ -55,5 +56,12 @@ public class CartController {
         }
         cartService.addToCart(userId, productId, count);
         return ResponseDataUtils.buildSuccess("0", "成功加入到购物车！");
+    }
+
+    //  删除某用户的某一条购物车商品信息
+    @DeleteMapping("/{cartId}")
+    public ResponseData deleteCartitem(@PathVariable("cartId") BigInteger cartId) {
+        cartService.deteleCartItem(cartId);
+        return ResponseDataUtils.buildSuccess("0", "删除成功！");
     }
 }
