@@ -7,6 +7,7 @@ import top.mphy.mallbackend.common.ResponseDataUtils;
 import top.mphy.mallbackend.entity.User;
 import top.mphy.mallbackend.service.UserService;
 
+import java.math.BigInteger;
 import java.util.Objects;
 
 @RestController
@@ -49,5 +50,15 @@ public class UserController {
         }
         userService.userRegister(queryUser);
         return ResponseDataUtils.buildSuccess("0", "注册成功！");
+    }
+
+    // 根据用户ID获取用户信息
+    @GetMapping("/{userId}")
+    public ResponseData getUserById(@PathVariable("userId")BigInteger userId) {
+        User user = userService.getUserById(userId);
+        if (user == null) {
+            return ResponseDataUtils.buildSuccess("1", "未查询到该用户！");
+        }
+        return ResponseDataUtils.buildSuccess("0", "查询用户信息成功！", user);
     }
 }

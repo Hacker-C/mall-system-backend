@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 import top.mphy.mallbackend.entity.User;
 import top.mphy.mallbackend.mapper.UserMapper;
 
+import java.math.BigInteger;
+
 @Service
 public class UserService {
 
@@ -21,6 +23,11 @@ public class UserService {
     // 注册验证
     public void userRegister(User user) {
         userMapper.save(user);
+    }
+
+    // 根据用户ID获取用户信息
+    public User getUserById(BigInteger userId) {
+        return userMapper.getUserById(userId);
     }
 
 }
