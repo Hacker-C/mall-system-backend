@@ -25,4 +25,8 @@ public class CartService {
         cartMapper.setCartCount(cartId, count);
     }
 
+    // 获取某个用户的购物车信息的数量
+    public BigInteger getCartCountById(BigInteger userId) {
+        return cartMapper.getCartCountById(userId);
+    }
 }
