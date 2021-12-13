@@ -1,6 +1,7 @@
 package top.mphy.mallbackend.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 import top.mphy.mallbackend.entity.User;
 import top.mphy.mallbackend.mapper.UserMapper;
 
@@ -30,4 +31,8 @@ public class UserService {
         return userMapper.getUserById(userId);
     }
 
+    // 更新用户基本信息
+    public void updateUser(@RequestBody User user) {
+        userMapper.updateUser(user);
+    }
 }

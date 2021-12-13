@@ -3,6 +3,7 @@ package top.mphy.mallbackend.entity;
 import lombok.Data;
 
 import java.math.BigInteger;
+import java.sql.Timestamp;
 
 @Data
 public class User {
@@ -18,4 +19,9 @@ public class User {
     private String sex;
     private String address;
     private String telephone;
+    // 用户剩余资金，用于购买商品
+    private double money;
+    // 账号注册时间
+    private Timestamp createTime;
+    private String email;
 }

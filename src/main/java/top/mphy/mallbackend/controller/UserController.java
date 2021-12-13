@@ -61,4 +61,12 @@ public class UserController {
         }
         return ResponseDataUtils.buildSuccess("0", "查询用户信息成功！", user);
     }
+
+    // 更新用户部分信息
+    @PutMapping("/{id}")
+    public ResponseData getUserById(@PathVariable("id")BigInteger id, @RequestBody User user) {
+        user.setUserId(id);
+        userService.updateUser(user);
+        return ResponseDataUtils.buildSuccess("0", "修改用户信息成功！");
+    }
 }
