@@ -7,6 +7,7 @@ import java.math.BigInteger;
 @Data
 public class Cart {
     private BigInteger cartId;
+    private BigInteger productId;
     private String imgSrc;
     private String productName;
     private Double productPrice;
