@@ -42,14 +42,18 @@ public class CartController {
 
     // 用户添加商品到购物车
     @PostMapping
-    public ResponseData addToCart(@RequestBody Cart user) {
-        BigInteger userId = user.getUserId();
-        BigInteger productId = user.getProductId();
+    public ResponseData addToCart(@RequestBody Cart queryCart) {
+        BigInteger userId = queryCart.getUserId();
+        BigInteger productId = queryCart.getProductId();
+        BigInteger count = queryCart.getCount();
+        if (count==null) {
+            count = new BigInteger(String.valueOf(1));
+        }
         Cart cart = cartService.findCartItem(userId, productId);
         if (cart != null) {
             return ResponseDataUtils.buildSuccess("1", "您已将该商品加入购物车！");
         }
-        cartService.addToCart(userId, productId);
+        cartService.addToCart(userId, productId, count);
         return ResponseDataUtils.buildSuccess("0", "成功加入到购物车！");
     }
 }

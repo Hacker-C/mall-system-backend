@@ -24,8 +24,8 @@ public interface CartMapper {
     BigInteger getCartCountById(BigInteger userId);
 
     // 用户添加商品到购物车
-    @Select("INSERT INTO cart(user_id, product_id) VALUE(#{userId}, #{productId})")
-    void addToCart(@Param("userId") BigInteger userId, @Param("productId") BigInteger productId);
+    @Select("INSERT INTO cart(user_id, product_id, count) VALUE(#{userId}, #{productId}, #{count})")
+    void addToCart(@Param("userId") BigInteger userId, @Param("productId") BigInteger productId, @Param("count") BigInteger count);
 
     // 检验用户是否收藏了某一件商品
     @Select("SELECT * FROM cart WHERE user_id=#{userId} AND product_id=#{productId}")

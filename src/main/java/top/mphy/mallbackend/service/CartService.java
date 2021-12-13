@@ -31,8 +31,8 @@ public class CartService {
     }
 
     // 用户添加商品到购物车
-    public void addToCart(BigInteger userId, BigInteger productId) {
-        cartMapper.addToCart(userId, productId);
+    public void addToCart(BigInteger userId, BigInteger productId, BigInteger count) {
+        cartMapper.addToCart(userId, productId, count);
     }
 
     // 检验用户是否收藏了某一件商品
