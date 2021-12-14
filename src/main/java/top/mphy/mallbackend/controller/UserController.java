@@ -8,7 +8,6 @@ import top.mphy.mallbackend.entity.User;
 import top.mphy.mallbackend.service.UserService;
 
 import java.math.BigInteger;
-import java.util.Objects;
 
 @RestController
 @RequestMapping("/user")
