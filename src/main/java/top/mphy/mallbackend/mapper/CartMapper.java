@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface CartMapper {
     // 获取某个用户的所有购物车信息
-    @Select("SELECT cart_id, cart.product_id, img_src, product_name, product_price, count FROM cart, product WHERE user_id=#{userId} AND cart.product_id=product.product_id")
+    @Select("SELECT cart_id, cart.product_id, img_src, product_name, product_price,discount, count FROM cart, product WHERE user_id=#{userId} AND cart.product_id=product.product_id")
     List<Cart> getCartById(BigInteger userId);
 
     // 修改某一个购物车商品的数量
@@ -30,5 +30,5 @@ public interface CartMapper {
 
     // 删除某用户的某一条购物车商品信息
     @Select("DELETE FROM cart WHERE cart_id=#{cartId}")
-    void deteleCartItem(BigInteger cartId);
+    void deleteCartItem(BigInteger cartId);
 }

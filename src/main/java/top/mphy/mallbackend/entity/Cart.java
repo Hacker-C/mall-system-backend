@@ -8,6 +8,7 @@ import java.math.BigInteger;
 public class Cart {
     private BigInteger cartId;
     private BigInteger productId;
+    private Double discount;
     private BigInteger userId;
     private String imgSrc;
     private String productName;

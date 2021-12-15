@@ -61,7 +61,7 @@ public class CartController {
     //  删除某用户的某一条购物车商品信息
     @DeleteMapping("/{cartId}")
     public ResponseData deleteCartitem(@PathVariable("cartId") BigInteger cartId) {
-        cartService.deteleCartItem(cartId);
+        cartService.deleteCartItem(cartId);
         return ResponseDataUtils.buildSuccess("0", "删除成功！");
     }
 }
