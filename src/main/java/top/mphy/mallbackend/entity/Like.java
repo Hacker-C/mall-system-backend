@@ -11,6 +11,7 @@ public class Like {
     private String productName;
     private String productPrice;
     private BigInteger productId;
+    private BigInteger userId;
     private Timestamp likeTime;
     private double discount;
     private String imgSrc;

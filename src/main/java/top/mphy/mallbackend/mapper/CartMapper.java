@@ -1,9 +1,6 @@
 package top.mphy.mallbackend.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import top.mphy.mallbackend.entity.Cart;
 
 import java.math.BigInteger;
@@ -27,7 +24,7 @@ public interface CartMapper {
     @Select("INSERT INTO cart(user_id, product_id, count) VALUE(#{userId}, #{productId}, #{count})")
     void addToCart(@Param("userId") BigInteger userId, @Param("productId") BigInteger productId, @Param("count") BigInteger count);
 
-    // 检验用户是否收藏了某一件商品
+    // 检验用户是否了添加了购物车
     @Select("SELECT * FROM cart WHERE user_id=#{userId} AND product_id=#{productId}")
     Cart findCartItem(@Param("userId") BigInteger userId, @Param("productId") BigInteger productId);
 

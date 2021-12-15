@@ -1,5 +1,6 @@
 package top.mphy.mallbackend.service;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import top.mphy.mallbackend.entity.Like;
 import top.mphy.mallbackend.mapper.LikeMapper;
@@ -20,9 +21,19 @@ public class LikeService {
         return likeMapper.findAll(userId);
     }
 
-    ;
-
     public BigInteger count(BigInteger userId) {
         return likeMapper.count(userId);
+    }
+
+    public void delete(BigInteger likeId) {
+        likeMapper.delete(likeId);
+    }
+
+    public Like findById(BigInteger productId, BigInteger userId) {
+        return likeMapper.findById(productId, userId);
+    }
+
+    public void save(BigInteger productId, BigInteger userId) {
+        likeMapper.save(productId, userId);
     }
 }
