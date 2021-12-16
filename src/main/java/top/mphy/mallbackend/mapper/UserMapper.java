@@ -58,10 +58,18 @@ public interface UserMapper {
     Integer countUser();
 
     // !分页查询获取所有用户信息
-    @Select("select * from user where concat(user_id,' ', username,' ', real_name,' ', telephone,' ', role,' ', status) like '%${key}%' limit #{offset},#{pageSize}")
+    @Select("select * from user where is_deleted=0 and concat(user_id,' ', username,' ', real_name,' ', telephone,' ', role,' ', status) like '%${key}%' limit #{offset},#{pageSize}")
     List<User> findByPage(@Param("offset") Integer offset, @Param("pageSize") Integer pageSize, @Param("key") String key);
 
     // !修改用户状态
     @Select("UPDATE `user` SET `status`=#{status} WHERE user_id=#{userId}")
     void setStatus(@Param("userId") BigInteger userId, @Param("status") BigInteger status);
+
+    // !重置密码
+    @Update("UPDATE `user` SET `password`=12345 WHERE user_id=#{userId}")
+    void reset(BigInteger userId);
+
+    // !删除用户
+    @Update("UPDATE `user` SET is_deleted=1 WHERE user_id=#{userId}")
+    void delete(BigInteger userId);
 }

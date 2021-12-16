@@ -101,4 +101,18 @@ public class UserController {
         userService.updateAccount(user);
         return ResponseDataUtils.buildSuccess("0", "修改账户信息成功！");
     }
+
+    // !重置密码
+    @PatchMapping("/reset/{userId}")
+    public ResponseData reset(@PathVariable("userId") BigInteger userId) {
+        userService.reset(userId);
+        return ResponseDataUtils.buildSuccess("0", "重置密码成功！");
+    }
+
+    // !删除用户（软删除）
+    @DeleteMapping("/{userId}")
+    public ResponseData delete(@PathVariable("userId") BigInteger userId) {
+        userService.delete(userId);
+        return ResponseDataUtils.buildSuccess("0", "删除用户成功！");
+    }
 }

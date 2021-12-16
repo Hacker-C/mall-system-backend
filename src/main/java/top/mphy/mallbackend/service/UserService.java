@@ -58,4 +58,14 @@ public class UserService {
     public void updateAccount(@RequestBody User user) {
         userMapper.updateAccount(user);
     }
+
+    // 重置密码
+    public void reset(BigInteger userId) {
+        userMapper.reset(userId);
+    }
+
+    // 删除用户
+    public void delete(BigInteger userId) {
+        userMapper.delete(userId);
+    }
 }

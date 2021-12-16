@@ -25,4 +25,6 @@ public class User {
     // 账号注册时间
     private Timestamp createTime;
     private String email;
+    // 软删除，1表示删除，0表示未删除
+    private Integer isDeleted;
 }
