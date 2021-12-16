@@ -13,5 +13,6 @@ public class Cart {
     private String imgSrc;
     private String productName;
     private Double productPrice;
+    private Double weight;
     private BigInteger count;
 }

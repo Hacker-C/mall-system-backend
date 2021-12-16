@@ -11,7 +11,8 @@ public class User {
     private String username;
     private String password;
     private String realName;
-    private int role;
+    // 客户：user, 管理员：admin，商家：shop
+    private String role;
     // 用户状态，0禁止登录，1可以登陆
     private int status;
     private String avatar;
