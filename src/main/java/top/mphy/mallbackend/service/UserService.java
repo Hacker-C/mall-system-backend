@@ -1,11 +1,13 @@
 package top.mphy.mallbackend.service;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import top.mphy.mallbackend.entity.User;
 import top.mphy.mallbackend.mapper.UserMapper;
 
 import java.math.BigInteger;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -15,6 +17,22 @@ public class UserService {
     public UserService(UserMapper userMapper) {
         this.userMapper = userMapper;
     }
+
+    // 获取所有用户信息
+    public List<User> findByPage(@Param("offset") int offset, @Param("pageSize") int pageSize, @Param("key") String key) {
+        return userMapper.findByPage(offset, pageSize, key);
+    }
+
+    // !修改用户状态
+    public void setStatus(BigInteger userId, BigInteger status) {
+        userMapper.setStatus(userId, status);
+    }
+
+    // 获取用户数量
+    public Integer countUser() {
+        return userMapper.countUser();
+    }
+
 
     // 登录验证，根据用户名查询用户
     public User getUserByUsername(String username) {
@@ -34,5 +52,10 @@ public class UserService {
     // 更新用户基本信息
     public void updateUser(@RequestBody User user) {
         userMapper.updateUser(user);
+    }
+
+    // 更新账户信息
+    public void updateAccount(@RequestBody User user) {
+        userMapper.updateAccount(user);
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import top.mphy.mallbackend.entity.User;
 
 import java.math.BigInteger;
+import java.util.List;
 
 @Mapper
 public interface UserMapper {
@@ -23,7 +24,7 @@ public interface UserMapper {
     @Select("SELECT * FROM `user` WHERE user_id=#{userId}")
     User getUserById(BigInteger userId);
 
-    // 更新用户基本信息
+    // !更新用户基本信息
     @Update({"<script>",
             "update user",
             "  <set>",
@@ -38,4 +39,29 @@ public interface UserMapper {
             "where user_id=#{userId}",
             "</script>"})
     void updateUser(@RequestBody User user);
+
+    // !更新用户账号信息
+    @Update({"<script>",
+            "update user",
+            "  <set>",
+            "    <if test='username != null'>username=#{username},</if>",
+            "    <if test='telephone != null'>telephone=#{telephone},</if>",
+            "    <if test='realName != null'>real_name=#{realName},</if>",
+            "    <if test='role != null'>role=#{role},</if>",
+            "  </set>",
+            "where user_id=#{userId}",
+            "</script>"})
+    void updateAccount(@RequestBody User user);
+
+    // 获取用户数量
+    @Select("SELECT count(*) FROM `user`")
+    Integer countUser();
+
+    // !分页查询获取所有用户信息
+    @Select("select * from user where concat(user_id,' ', username,' ', real_name,' ', telephone,' ', role,' ', status) like '%${key}%' limit #{offset},#{pageSize}")
+    List<User> findByPage(@Param("offset") Integer offset, @Param("pageSize") Integer pageSize, @Param("key") String key);
+
+    // !修改用户状态
+    @Select("UPDATE `user` SET `status`=#{status} WHERE user_id=#{userId}")
+    void setStatus(@Param("userId") BigInteger userId, @Param("status") BigInteger status);
 }
