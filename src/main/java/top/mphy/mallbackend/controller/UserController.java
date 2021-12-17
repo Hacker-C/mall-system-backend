@@ -1,6 +1,7 @@
 package top.mphy.mallbackend.controller;
 
 import com.sun.xml.internal.bind.v2.TODO;
+import org.apache.ibatis.annotations.Insert;
 import org.springframework.web.bind.annotation.*;
 import top.mphy.mallbackend.common.ResponseData;
 import top.mphy.mallbackend.common.ResponseDataUtils;
@@ -114,5 +115,12 @@ public class UserController {
     public ResponseData delete(@PathVariable("userId") BigInteger userId) {
         userService.delete(userId);
         return ResponseDataUtils.buildSuccess("0", "删除用户成功！");
+    }
+
+    // !添加新用户
+    @PostMapping("/add")
+    public ResponseData addNew(@RequestBody User user) {
+        userService.addNew(user);
+        return ResponseDataUtils.buildSuccess("0", "添加新用户成功！");
     }
 }

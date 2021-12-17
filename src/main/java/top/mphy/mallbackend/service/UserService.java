@@ -68,4 +68,9 @@ public class UserService {
     public void delete(BigInteger userId) {
         userMapper.delete(userId);
     }
+
+    // 添加新用户
+    public void addNew(User user) {
+        userMapper.add(user);
+    }
 }

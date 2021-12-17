@@ -1,9 +1,6 @@
 package top.mphy.mallbackend.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.springframework.web.bind.annotation.RequestBody;
 import top.mphy.mallbackend.entity.User;
 
@@ -72,4 +69,8 @@ public interface UserMapper {
     // !删除用户
     @Update("UPDATE `user` SET is_deleted=1 WHERE user_id=#{userId}")
     void delete(BigInteger userId);
+
+    // !添加新用户
+    @Insert("INSERT INTO `user`(username,real_name,telephone,role) VALUE(#{username},#{realName},#{telephone},#{role})")
+    void add(User user);
 }
