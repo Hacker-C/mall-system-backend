@@ -1,7 +1,5 @@
 package top.mphy.mallbackend.controller;
 
-import com.sun.xml.internal.bind.v2.TODO;
-import org.apache.ibatis.annotations.Insert;
 import org.springframework.web.bind.annotation.*;
 import top.mphy.mallbackend.common.ResponseData;
 import top.mphy.mallbackend.common.ResponseDataUtils;
@@ -25,7 +23,7 @@ public class UserController {
     // !获取所有用户信息
     // GET: 分页查询
     @GetMapping
-    public ResponseData findByPage(@RequestParam(defaultValue = "1") Integer pageNum,
+    public ResponseData<?> findByPage(@RequestParam(defaultValue = "1") Integer pageNum,
                                  @RequestParam(defaultValue = "10") Integer pageSize,
                                  @RequestParam(defaultValue = "") String key) {
         int offset = (pageNum - 1) * pageSize;
@@ -42,7 +40,7 @@ public class UserController {
 
     // !登录验证
     @PostMapping("/login")
-    public ResponseData login(@RequestBody User queryUser) {
+    public ResponseData<?> login(@RequestBody User queryUser) {
         // queryUser: 前端传过来的用户对象
         User user =  userService.getUserByUsername(queryUser.getUsername());
         if (user == null) {
@@ -60,7 +58,7 @@ public class UserController {
     // !注册验证
     // TODO 普通用户注册，未来还要写商家注册
     @PostMapping("/register")
-    public ResponseData userRegister(@RequestBody User queryUser) {
+    public ResponseData<?> userRegister(@RequestBody User queryUser) {
         // 根据前端传来的注册用户名查询用户名是否重复
         User user = userService.getUserByUsername(queryUser.getUsername());
         // 用户名重复，禁止注册
@@ -73,7 +71,7 @@ public class UserController {
 
     // !根据用户ID获取用户信息
     @GetMapping("/{userId}")
-    public ResponseData getUserById(@PathVariable("userId")BigInteger userId) {
+    public ResponseData<?> getUserById(@PathVariable("userId")BigInteger userId) {
         User user = userService.getUserById(userId);
         if (user == null) {
             return ResponseDataUtils.buildSuccess("1", "未查询到该用户！");
@@ -83,7 +81,7 @@ public class UserController {
 
     // !更新用户信息
     @PutMapping("/{id}")
-    public ResponseData getUserById(@PathVariable("id")BigInteger id, @RequestBody User user) {
+    public ResponseData<?> getUserById(@PathVariable("id")BigInteger id, @RequestBody User user) {
         user.setUserId(id);
         userService.updateUser(user);
         return ResponseDataUtils.buildSuccess("0", "修改用户信息成功！");
@@ -91,35 +89,35 @@ public class UserController {
 
     // !更新用户状态
     @PatchMapping("/{userId}/{status}")
-    public ResponseData changeStatus(@PathVariable("userId") BigInteger userId, @PathVariable("status") BigInteger status) {
+    public ResponseData<?> changeStatus(@PathVariable("userId") BigInteger userId, @PathVariable("status") BigInteger status) {
         userService.setStatus(userId, status);
         return ResponseDataUtils.buildSuccess("0", "修改用户信息成功！");
     }
 
     // !更新账户信息
     @PostMapping("/account")
-    public ResponseData updateAccount(@RequestBody User user) {
+    public ResponseData<?> updateAccount(@RequestBody User user) {
         userService.updateAccount(user);
         return ResponseDataUtils.buildSuccess("0", "修改账户信息成功！");
     }
 
     // !重置密码
     @PatchMapping("/reset/{userId}")
-    public ResponseData reset(@PathVariable("userId") BigInteger userId) {
+    public ResponseData<?> reset(@PathVariable("userId") BigInteger userId) {
         userService.reset(userId);
         return ResponseDataUtils.buildSuccess("0", "重置密码成功！");
     }
 
     // !删除用户（软删除）
     @DeleteMapping("/{userId}")
-    public ResponseData delete(@PathVariable("userId") BigInteger userId) {
+    public ResponseData<?> delete(@PathVariable("userId") BigInteger userId) {
         userService.delete(userId);
         return ResponseDataUtils.buildSuccess("0", "删除用户成功！");
     }
 
     // !添加新用户
     @PostMapping("/add")
-    public ResponseData addNew(@RequestBody User user) {
+    public ResponseData<?> addNew(@RequestBody User user) {
         userService.addNew(user);
         return ResponseDataUtils.buildSuccess("0", "添加新用户成功！");
     }

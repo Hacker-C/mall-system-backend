@@ -1,8 +1,10 @@
 package top.mphy.mallbackend.service;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import top.mphy.mallbackend.entity.Product;
 import top.mphy.mallbackend.entity.ProductCategory;
+import top.mphy.mallbackend.entity.User;
 import top.mphy.mallbackend.mapper.ProductMapper;
 
 import java.math.BigInteger;
@@ -36,4 +38,22 @@ public class ProductService {
     public List<Product> findHot() {
         return productMapper.findHot();
     }
+
+    // 查出某个店下的所有商品
+//    public List<Product> findByShopId(BigInteger ownerId) {
+//        return productMapper.findByShopId(ownerId);
+//    }
+
+    public List<Product> findByPage(@Param("offset") int offset, @Param("pageSize") int pageSize, @Param("key") String key, @Param("ownerId") Integer ownerId) {
+        return productMapper.findByPage(offset, pageSize, key, ownerId);
+    }
+
+    public Integer countShopProduct(Integer ownerId) {
+        return productMapper.countShopProduct(ownerId);
+    }
+
+    public void updateProduct(Product product) {
+        productMapper.updateProduct(product);
+    }
+
 }
