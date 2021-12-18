@@ -121,4 +121,15 @@ public class UserController {
         userService.addNew(user);
         return ResponseDataUtils.buildSuccess("0", "添加新用户成功！");
     }
+
+    // !充值
+    @PatchMapping("/recharge")
+    public ResponseData<?> recharge(@RequestBody User user) {
+        BigInteger userId = user.getUserId();
+        Double addMoney = user.getMoney();
+        System.out.println(userId);
+        System.out.println(addMoney);
+        userService.recharge(userId, addMoney);
+        return ResponseDataUtils.buildSuccess("0", "充值成功！");
+    }
 }

@@ -73,4 +73,9 @@ public class UserService {
     public void addNew(User user) {
         userMapper.add(user);
     }
+
+    // 用户充值
+    public void recharge(BigInteger userId, Double addMoney) {
+        userMapper.recharge(userId, addMoney);
+    }
 }

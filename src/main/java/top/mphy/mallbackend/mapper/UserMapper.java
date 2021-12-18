@@ -73,4 +73,8 @@ public interface UserMapper {
     // !添加新用户
     @Insert("INSERT INTO `user`(username,real_name,telephone,role) VALUE(#{username},#{realName},#{telephone},#{role})")
     void add(User user);
+
+    // !用户充值
+    @Update("UPDATE `user` SET money=money+#{addMoney} WHERE user_id=#{userId}")
+    void recharge(@Param("userId") BigInteger userId, @Param("addMoney") Double addMoney);
 }
