@@ -31,4 +31,8 @@ public interface CartMapper {
     // 删除某用户的某一条购物车商品信息
     @Select("DELETE FROM cart WHERE cart_id=#{cartId}")
     void deleteCartItem(BigInteger cartId);
+
+    // !清空某用户的购物车
+    @Delete("DELETE FROM cart WHERE user_id=#{userId}")
+    void deleteAll(BigInteger userId);
 }

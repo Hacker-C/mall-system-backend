@@ -44,4 +44,9 @@ public class CartService {
     public void deleteCartItem(BigInteger userId) {
         cartMapper.deleteCartItem(userId);
     }
+
+    // 清空购物车
+    public void deleteAll(BigInteger userId) {
+        cartMapper.deleteAll(userId);
+    }
 }
