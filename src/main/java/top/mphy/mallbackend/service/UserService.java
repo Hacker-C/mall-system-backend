@@ -3,6 +3,7 @@ package top.mphy.mallbackend.service;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
+import top.mphy.mallbackend.entity.Shop;
 import top.mphy.mallbackend.entity.User;
 import top.mphy.mallbackend.mapper.UserMapper;
 
@@ -78,4 +79,11 @@ public class UserService {
     public void recharge(BigInteger userId, Double addMoney) {
         userMapper.recharge(userId, addMoney);
     }
+
+    // 店家注册
+    public void shopRegister(Shop shop) {
+        userMapper.shopRegister(shop);
+    }
+
+
 }

@@ -2,6 +2,7 @@ package top.mphy.mallbackend.mapper;
 
 import org.apache.ibatis.annotations.*;
 import org.springframework.web.bind.annotation.RequestBody;
+import top.mphy.mallbackend.entity.Shop;
 import top.mphy.mallbackend.entity.User;
 
 import java.math.BigInteger;
@@ -77,4 +78,10 @@ public interface UserMapper {
     // !用户充值
     @Update("UPDATE `user` SET money=money+#{addMoney} WHERE user_id=#{userId}")
     void recharge(@Param("userId") BigInteger userId, @Param("addMoney") Double addMoney);
+
+    // !店家注册
+    @Insert("INSERT INTO `user`(telephone,username,real_name,`password`, role) VALUE(#{telephone},#{username},#{realName},#{password}, 'shop')")
+    void shopRegister(Shop shop);
+
+
 }

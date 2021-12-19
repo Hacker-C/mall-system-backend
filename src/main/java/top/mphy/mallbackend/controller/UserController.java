@@ -3,6 +3,7 @@ package top.mphy.mallbackend.controller;
 import org.springframework.web.bind.annotation.*;
 import top.mphy.mallbackend.common.ResponseData;
 import top.mphy.mallbackend.common.ResponseDataUtils;
+import top.mphy.mallbackend.entity.Shop;
 import top.mphy.mallbackend.entity.User;
 import top.mphy.mallbackend.service.UserService;
 import top.mphy.mallbackend.vo.Page;
@@ -55,8 +56,7 @@ public class UserController {
         return ResponseDataUtils.buildSuccess("0", "登录成功！", user);
     }
 
-    // !注册验证
-    // TODO 普通用户注册，未来还要写商家注册
+    // !普通用户注册
     @PostMapping("/register")
     public ResponseData<?> userRegister(@RequestBody User queryUser) {
         // 根据前端传来的注册用户名查询用户名是否重复
@@ -131,5 +131,18 @@ public class UserController {
         System.out.println(addMoney);
         userService.recharge(userId, addMoney);
         return ResponseDataUtils.buildSuccess("0", "充值成功！");
+    }
+
+    // !店家注册
+    @PostMapping("/shop/register")
+    public ResponseData<?> shopRegister(@RequestBody Shop queryShop) {
+        // 根据前端传来的注册名查询用户名是否重复
+        User user = userService.getUserByUsername(queryShop.getUsername());
+        // 用户名重复，禁止注册
+        if (user != null) {
+            return ResponseDataUtils.buildSuccess("1", "该用户名已被使用！");
+        }
+        userService.shopRegister(queryShop);
+        return ResponseDataUtils.buildSuccess("0", "店家注册成功！请前往登录！");
     }
 }
