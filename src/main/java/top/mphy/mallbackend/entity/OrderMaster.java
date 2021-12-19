@@ -2,6 +2,8 @@ package top.mphy.mallbackend.entity;
 
 import lombok.Data;
 
+import java.sql.Timestamp;
+
 @Data
 public class OrderMaster {
     private Integer orderId;
@@ -11,6 +13,9 @@ public class OrderMaster {
     private Integer buyerId;
     // 此次订单总金额
     private Double orderAmount;
-    // 订单状态：0表示未支付，1表示未发货，2表示已发货，3表示已完成
+    // 下单时间
+    private Timestamp createTime;
+    // 红 蓝 绿 灰
+    // !订单状态：0表示待付款，1表示待收货，2表示已取消，3表示已完成
     private Integer orderStatus;
 }

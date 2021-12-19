@@ -2,6 +2,7 @@ package top.mphy.mallbackend.service;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
+import top.mphy.mallbackend.entity.OrderDetail;
 import top.mphy.mallbackend.entity.Product;
 import top.mphy.mallbackend.entity.ProductCategory;
 import top.mphy.mallbackend.entity.User;
@@ -54,6 +55,10 @@ public class ProductService {
 
     public void updateProduct(Product product) {
         productMapper.updateProduct(product);
+    }
+
+    public List<OrderDetail> findOrderDetail(String orderNumber) {
+        return productMapper.findOrderDetail(orderNumber);
     }
 
 }

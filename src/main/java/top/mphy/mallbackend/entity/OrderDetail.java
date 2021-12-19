@@ -7,10 +7,10 @@ import java.sql.Timestamp;
 
 @Data
 public class OrderDetail {
-    private Integer detailId;
-    private String orderNumber;
-    private BigInteger productId;
+    private String imgSrc;
+    private String productName;
+    private Double productPrice;
     private BigInteger count;
-    private Timestamp createTime;
-    private Timestamp updateTime;
+    // 某一件订单中一类商品的总额
+    private Double orderProductPrice;
 }

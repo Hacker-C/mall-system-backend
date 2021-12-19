@@ -5,6 +5,10 @@ import top.mphy.mallbackend.entity.OrderDetail;
 import top.mphy.mallbackend.entity.OrderMaster;
 import top.mphy.mallbackend.mapper.OrderMapper;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.List;
+
 @Service
 public class OrderService {
 
@@ -20,6 +24,10 @@ public class OrderService {
 
     public void addOrderDetail(OrderDetail orderDetail) {
         orderMapper.add(orderDetail);
+    }
+
+    public List<OrderMaster> findById(BigInteger buyerId) {
+        return orderMapper.findById(buyerId);
     }
 
 }

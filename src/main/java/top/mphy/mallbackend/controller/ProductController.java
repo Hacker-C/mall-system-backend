@@ -3,6 +3,7 @@ package top.mphy.mallbackend.controller;
 import org.springframework.web.bind.annotation.*;
 import top.mphy.mallbackend.common.ResponseData;
 import top.mphy.mallbackend.common.ResponseDataUtils;
+import top.mphy.mallbackend.entity.OrderDetail;
 import top.mphy.mallbackend.entity.Product;
 import top.mphy.mallbackend.service.ProductService;
 import top.mphy.mallbackend.vo.Page;
@@ -66,6 +67,13 @@ public class ProductController {
     public ResponseData<?> updateProduct(@RequestBody Product product) {
         productService.updateProduct(product);
         return ResponseDataUtils.buildSuccess("0", "商品信息修改成功！");
+    }
+
+    // !获取某一订单的所有商品信息
+    @GetMapping("/order/{orderNumber}")
+    public ResponseData<?> findOrderDetail(@PathVariable String orderNumber) {
+        List<OrderDetail> orderDetails = productService.findOrderDetail(orderNumber);
+        return ResponseDataUtils.buildSuccess("0", "获取商品信息成功！", orderDetails);
     }
 
 }

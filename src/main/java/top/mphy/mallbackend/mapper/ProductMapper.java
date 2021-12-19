@@ -3,6 +3,7 @@ package top.mphy.mallbackend.mapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import top.mphy.mallbackend.entity.OrderDetail;
 import top.mphy.mallbackend.entity.Product;
 import top.mphy.mallbackend.entity.User;
 
@@ -43,4 +44,8 @@ public interface ProductMapper {
     // !商家修改商品信息
     @Select("UPDATE product SET product_name=#{productName},product_price=#{productPrice},category_id=#{categoryId},weight=#{weight},discount=#{discount},`left`=#{left},product_desc=#{productDesc}, img_src=#{imgSrc} WHERE product_id=#{productId}")
     void updateProduct(Product product);
+
+    // !获取某一订单的所有商品信息
+    @Select("SELECT img_src, product_name, product_price, count, count*product_price*discount as orderProductPrice FROM order_detail, product WHERE product.product_id=order_detail.product_id AND order_number=#{orderNumber}")
+    List<OrderDetail> findOrderDetail(String orderNumber);
 }

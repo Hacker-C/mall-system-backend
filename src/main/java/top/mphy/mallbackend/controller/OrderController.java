@@ -1,14 +1,14 @@
 package top.mphy.mallbackend.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import top.mphy.mallbackend.common.ResponseData;
 import top.mphy.mallbackend.common.ResponseDataUtils;
 import top.mphy.mallbackend.entity.OrderDetail;
 import top.mphy.mallbackend.entity.OrderMaster;
 import top.mphy.mallbackend.service.OrderService;
+
+import java.math.BigInteger;
+import java.util.List;
 
 @RestController
 @RequestMapping("/order")
@@ -30,6 +30,13 @@ public class OrderController {
     public ResponseData<?> addOrderDetail(@RequestBody OrderDetail orderDetail) {
         orderService.addOrderDetail(orderDetail);
         return ResponseDataUtils.buildSuccess("0", "订单商品保存成功！");
+    }
+
+    // !获取用户所有订单
+    @GetMapping("/{buyerId}")
+    public ResponseData<?> findById(@PathVariable BigInteger buyerId) {
+        List<OrderMaster> orderMasters = orderService.findById(buyerId);
+        return ResponseDataUtils.buildSuccess("0", "订单信息获取成功！", orderMasters);
     }
 
 }
