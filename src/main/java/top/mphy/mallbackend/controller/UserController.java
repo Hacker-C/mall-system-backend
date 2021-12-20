@@ -22,16 +22,26 @@ public class UserController {
     }
 
     // !获取所有用户信息
-    // GET: 分页查询
+    // !GET: 分页查询
     @GetMapping
-    public ResponseData<?> findByPage(@RequestParam(defaultValue = "1") Integer pageNum,
+    public ResponseData<?> findByPage( @RequestParam(defaultValue = "user") String flag,
+                                @RequestParam(defaultValue = "1") Integer pageNum,
                                  @RequestParam(defaultValue = "10") Integer pageSize,
                                  @RequestParam(defaultValue = "") String key) {
+//        System.out.println(flag);
+
         int offset = (pageNum - 1) * pageSize;
-        List<User> userData = userService.findByPage(offset, pageSize, key);
+        List<User> userData;
+        Integer total;
+        if (flag.equals("shop")) {
+            userData = userService.findShopsByPage(offset, pageSize, key);
+            total = userService.countShops();
+        } else {
+            userData = userService.findByPage(offset, pageSize, key);
+            total = userService.countUser();
+        }
         Page<User> page = new Page<>();
         page.setData(userData);
-        Integer total = userService.countUser();
         page.setTotal(total);
         page.setPageNum(pageNum);
         page.setPageSize(pageSize);

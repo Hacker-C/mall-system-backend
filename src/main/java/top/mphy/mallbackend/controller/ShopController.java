@@ -5,7 +5,6 @@ import top.mphy.mallbackend.common.ResponseData;
 import top.mphy.mallbackend.common.ResponseDataUtils;
 import top.mphy.mallbackend.entity.Shop;
 import top.mphy.mallbackend.service.ShopService;
-import top.mphy.mallbackend.service.UserService;
 
 import java.math.BigInteger;
 
@@ -30,9 +29,15 @@ public class ShopController {
     // !获取shop信息
     @GetMapping("/{userId}")
     public ResponseData<?> findById(@PathVariable BigInteger userId) {
-        Shop shop =  shopService.findById(userId);
+        Shop shop = shopService.findById(userId);
         return ResponseDataUtils.buildSuccess("0", "获取店铺信息成功！", shop);
     }
 
+    // !根据shop_id获取店铺信息
+    @GetMapping("/shop_id/{shopId}")
+    public ResponseData<?> findByShopId(@PathVariable BigInteger shopId) {
+        Shop shop = shopService.findByShopId(shopId);
+        return ResponseDataUtils.buildSuccess("0", "获取店铺信息成功！", shop);
+    }
 
 }

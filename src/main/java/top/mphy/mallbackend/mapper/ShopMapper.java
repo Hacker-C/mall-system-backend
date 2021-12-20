@@ -20,4 +20,8 @@ public interface ShopMapper {
     // !根据userId 查用户店铺信息
     @Select("SELECT * FROM shop WHERE owner_id=#{userId}")
     Shop findById(BigInteger userId);
+
+    // !根据shop_id获取店铺信息
+    @Select("SELECT * FROM shop WHERE shop_id=#{shopId}")
+    Shop findByShopId(BigInteger shopId);
 }

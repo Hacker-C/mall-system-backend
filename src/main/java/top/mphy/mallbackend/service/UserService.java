@@ -24,15 +24,26 @@ public class UserService {
         return userMapper.findByPage(offset, pageSize, key);
     }
 
-    // !修改用户状态
+    // 获取所有商家信息
+    public List<User> findShopsByPage(@Param("offset") int offset, @Param("pageSize") int pageSize, @Param("key") String key) {
+        return userMapper.findShopsByPage(offset, pageSize, key);
+    }
+
+        // !修改用户状态
     public void setStatus(BigInteger userId, BigInteger status) {
         userMapper.setStatus(userId, status);
     }
 
-    // 获取用户数量
+    // !获取用户数量
     public Integer countUser() {
         return userMapper.countUser();
     }
+
+    // !获取店家数量
+    public Integer countShops() {
+        return userMapper.countShops();
+    }
+
 
 
     // 登录验证，根据用户名查询用户

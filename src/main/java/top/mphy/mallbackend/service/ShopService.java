@@ -1,5 +1,6 @@
 package top.mphy.mallbackend.service;
 
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Service;
 import top.mphy.mallbackend.entity.Shop;
 import top.mphy.mallbackend.mapper.ShopMapper;
@@ -26,5 +27,10 @@ public class ShopService {
     //
     public Shop findById(BigInteger userId) {
         return shopMapper.findById(userId);
+    }
+
+    // !根据shop_id获取店铺信息
+    public Shop findByShopId(BigInteger shopId) {
+        return  shopMapper.findByShopId(shopId);
     }
 }
