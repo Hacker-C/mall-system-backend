@@ -23,4 +23,8 @@ public class ShopService {
         return shopMapper.getUserId(username);
     }
 
+    //
+    public Shop findById(BigInteger userId) {
+        return shopMapper.findById(userId);
+    }
 }

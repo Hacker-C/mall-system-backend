@@ -1,9 +1,6 @@
 package top.mphy.mallbackend.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import top.mphy.mallbackend.common.ResponseData;
 import top.mphy.mallbackend.common.ResponseDataUtils;
 import top.mphy.mallbackend.entity.Shop;
@@ -24,10 +21,18 @@ public class ShopController {
 
     @PostMapping
     public ResponseData<?> register(@RequestBody Shop shop) {
-        shopService.addShop(shop);
         BigInteger userId = shopService.getUserId(shop.getUsername());
         shop.setOwnerId(userId);
+        shopService.addShop(shop);
         return ResponseDataUtils.buildSuccess("0", "注册并开店成功！请前往登录！");
     }
+
+    // !获取shop信息
+    @GetMapping("/{userId}")
+    public ResponseData<?> findById(@PathVariable BigInteger userId) {
+        Shop shop =  shopService.findById(userId);
+        return ResponseDataUtils.buildSuccess("0", "获取店铺信息成功！", shop);
+    }
+
 
 }

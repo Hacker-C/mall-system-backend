@@ -1,5 +1,6 @@
 package top.mphy.mallbackend.mapper;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -48,4 +49,8 @@ public interface ProductMapper {
     // !获取某一订单的所有商品信息
     @Select("SELECT img_src, product_name, product_price, count, count*product_price*discount as orderProductPrice FROM order_detail, product WHERE product.product_id=order_detail.product_id AND order_number=#{orderNumber}")
     List<OrderDetail> findOrderDetail(String orderNumber);
+
+    // !添加新产品
+    @Insert("INSERT INTO product(product_name,product_price,category_id,weight,product_desc,discount,`left`,img_src, shop_id) VALUE(#{productName},#{productPrice},#{categoryId},#{weight},#{productDesc},#{discount},#{left},#{imgSrc},#{shopId})")
+    void addProduct(Product product);
 }

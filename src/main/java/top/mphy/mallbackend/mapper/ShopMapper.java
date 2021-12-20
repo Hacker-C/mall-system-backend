@@ -16,4 +16,8 @@ public interface ShopMapper {
     // !根据用户名获取用户ID
     @Select("SELECT user_id FROM user WHERE username=#{username}")
     BigInteger getUserId(String username);
+
+    // !根据userId 查用户店铺信息
+    @Select("SELECT * FROM shop WHERE owner_id=#{userId}")
+    Shop findById(BigInteger userId);
 }

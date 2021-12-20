@@ -76,4 +76,12 @@ public class ProductController {
         return ResponseDataUtils.buildSuccess("0", "获取商品信息成功！", orderDetails);
     }
 
+    // !添加新产品
+    @PostMapping
+    public ResponseData<?> addProduct(@RequestBody Product product) {
+        productService.addProduct(product);
+        return ResponseDataUtils.buildSuccess("0", "商品添加成功！");
+
+    }
+
 }

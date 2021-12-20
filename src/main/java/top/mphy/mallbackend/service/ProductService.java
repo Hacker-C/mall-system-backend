@@ -61,4 +61,8 @@ public class ProductService {
         return productMapper.findOrderDetail(orderNumber);
     }
 
+    public void addProduct(Product product) {
+        productMapper.addProduct(product);
+    }
+
 }
