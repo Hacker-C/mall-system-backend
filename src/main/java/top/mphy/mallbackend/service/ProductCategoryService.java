@@ -27,4 +27,13 @@ public class ProductCategoryService {
         return productCategoryMapper.findById(categoryId);
     }
 
+    // 添加分类
+    public void addCategory(ProductCategory productCategory) {
+        productCategoryMapper.addCategory(productCategory);
+    }
+
+    // 编辑分类
+    public void setCategory(ProductCategory productCategory) {
+        productCategoryMapper.setCategory(productCategory);
+    }
 }

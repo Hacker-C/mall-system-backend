@@ -60,11 +60,11 @@ public interface UserMapper {
     Integer countShops();
 
     // !分页查询获取所有用户信息
-    @Select("select * from user where and concat(user_id,' ', username,' ', real_name,' ', telephone,' ', role,' ', status) like '%${key}%' limit #{offset},#{pageSize}")
+    @Select("select * from user where concat(user_id,' ', username,' ', real_name,' ', telephone,' ', role,' ', status) like '%${key}%' limit #{offset},#{pageSize}")
     List<User> findByPage(@Param("offset") Integer offset, @Param("pageSize") Integer pageSize, @Param("key") String key);
 
     // !分页查询获取所有用户信息
-    @Select("select * from user where and role='shop'  and concat(user_id,' ', username,' ', real_name,' ', telephone,' ', role,' ', status) like '%${key}%' limit #{offset},#{pageSize}")
+    @Select("select * from user where  role='shop'  and concat(user_id,' ', username,' ', real_name,' ', telephone,' ', role,' ', status) like '%${key}%' limit #{offset},#{pageSize}")
     List<User> findShopsByPage(@Param("offset") Integer offset, @Param("pageSize") Integer pageSize, @Param("key") String key);
 
     // !修改用户状态
@@ -76,8 +76,19 @@ public interface UserMapper {
     void reset(BigInteger userId);
 
     // !删除用户
-    @Update("delete from `user` WHERE user_id=#{userId}")
+    @Delete("delete from `user` WHERE user_id=#{userId};")
     void delete(BigInteger userId);
+
+    @Delete("DELETE FROM product WHERE product.shop_id=(SELECT shop_id FROM shop WHERE owner_id=#{userId});")
+    void deleteP(BigInteger userId);
+
+    @Delete("delete from shop where owner_id=#{userId}")
+    void deleteS(BigInteger userId);
+
+    @Select("SELECT * FROM shop WHERE owner_id=#{userId}")
+    Shop checkShop(BigInteger userId);
+
+    // !删除店家
 
     // !添加新用户
     @Insert("INSERT INTO `user`(username,real_name,telephone,role) VALUE(#{username},#{realName},#{telephone},#{role})")

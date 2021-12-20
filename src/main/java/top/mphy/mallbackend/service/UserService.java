@@ -79,6 +79,11 @@ public class UserService {
     // 删除用户
     public void delete(BigInteger userId) {
         userMapper.delete(userId);
+        Shop shop = userMapper.checkShop(userId);
+        if (shop != null) {
+            userMapper.deleteP(userId);
+            userMapper.deleteS(userId);
+        }
     }
 
     // 添加新用户
