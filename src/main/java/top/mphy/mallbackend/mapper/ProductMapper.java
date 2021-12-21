@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import top.mphy.mallbackend.entity.OrderDetail;
 import top.mphy.mallbackend.entity.Product;
-import top.mphy.mallbackend.entity.User;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -30,8 +29,8 @@ public interface ProductMapper {
     List<Product> findHot();
 
     // 查出某个店下的所有商品
-//    @Select("SELECT * FROM product WHERE shop_id=(SELECT shop_id FROM shop WHERE owner_id=#{ownerId})")
-//    List <Product> findByShopId(BigInteger ownerId);
+    //    @Select("SELECT * FROM product WHERE shop_id=(SELECT shop_id FROM shop WHERE owner_id=#{ownerId})")
+    //    List <Product> findByShopId(BigInteger ownerId);
 
     // !分页查询
     // SELECT * FROM product WHERE shop_id=(SELECT shop_id FROM shop WHERE owner_id=2)
@@ -53,4 +52,8 @@ public interface ProductMapper {
     // !添加新产品
     @Insert("INSERT INTO product(product_name,product_price,category_id,weight,product_desc,discount,`left`,img_src, shop_id) VALUE(#{productName},#{productPrice},#{categoryId},#{weight},#{productDesc},#{discount},#{left},#{imgSrc},#{shopId})")
     void addProduct(Product product);
+
+    // !根据shopId 获取所有商品
+    @Select("SELECT * FROM product WHERE shop_id=#{shopId}")
+    List<Product> findByShopId(BigInteger shopId);
 }

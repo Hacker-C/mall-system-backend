@@ -65,4 +65,8 @@ public class ProductService {
         productMapper.addProduct(product);
     }
 
+    public  List<Product> findByShopId(BigInteger shopId) {
+        return productMapper.findByShopId(shopId);
+    }
+
 }

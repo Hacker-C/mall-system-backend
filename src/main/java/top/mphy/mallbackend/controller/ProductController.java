@@ -81,7 +81,13 @@ public class ProductController {
     public ResponseData<?> addProduct(@RequestBody Product product) {
         productService.addProduct(product);
         return ResponseDataUtils.buildSuccess("0", "商品添加成功！");
+    }
 
+    // !根据 shopId 获取所有商品
+    @GetMapping("/shop_id/{shopId}")
+    public ResponseData<?> findByShopId(@PathVariable BigInteger shopId) {
+        List<Product> products =  productService.findByShopId(shopId);
+        return ResponseDataUtils.buildSuccess("0", "该店商品信息获取成功！", products);
     }
 
 }
