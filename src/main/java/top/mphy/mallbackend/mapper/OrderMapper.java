@@ -1,5 +1,6 @@
 package top.mphy.mallbackend.mapper;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -23,4 +24,16 @@ public interface OrderMapper {
     // !获取某用户得全部订单信息
     @Select("SELECT * FROM order_master WHERE buyer_id=#{buyerId}")
     List<OrderMaster> findById(BigInteger buyerId);
+
+    // !根据用户id获取订单数
+    @Select("SELECT count(*) FROM order_master WHERE buyer_id=#{userId}")
+    BigInteger count(BigInteger userId);
+
+    // !删除订单信息
+    @Delete("DELETE FROM order_master WHERE order_number=#{orderNumber}")
+    void deleteO(String orderNumber);
+
+    // !删除订单详情中的所有商品
+    @Delete("DELETE FROM order_detail WHERE order_number=#{orderNumber}")
+    void deleteP(String orderNumber);
 }

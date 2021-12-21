@@ -155,4 +155,10 @@ public class UserController {
         userService.shopRegister(queryShop);
         return ResponseDataUtils.buildSuccess("0", "店家注册成功！请前往登录！");
     }
+
+    // !根据 userId 获取 shopId
+    @GetMapping("/shop_id/{userId}")
+    public BigInteger getShopId(@PathVariable BigInteger userId) {
+        return userService.getShopId(userId);
+    }
 }

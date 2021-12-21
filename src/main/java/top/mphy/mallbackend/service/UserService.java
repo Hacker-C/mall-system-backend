@@ -101,5 +101,8 @@ public class UserService {
         userMapper.shopRegister(shop);
     }
 
+    public BigInteger getShopId(BigInteger userId) {
+        return userMapper.getShopId(userId);
+    }
 
 }

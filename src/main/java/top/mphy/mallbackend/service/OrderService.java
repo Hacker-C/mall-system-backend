@@ -30,4 +30,17 @@ public class OrderService {
         return orderMapper.findById(buyerId);
     }
 
+    public BigInteger getCount(BigInteger userId) {
+        return orderMapper.count(userId);
+    }
+
+    public void deleteO(String orderNumber) {
+        orderMapper.deleteO(orderNumber);
+    }
+
+    public void deleteP(String orderNumber) {
+        orderMapper.deleteP(orderNumber);
+    }
+
+
 }

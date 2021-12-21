@@ -102,5 +102,8 @@ public interface UserMapper {
     @Insert("INSERT INTO `user`(telephone,username,real_name,`password`, role) VALUE(#{telephone},#{username},#{realName},#{password}, 'shop')")
     void shopRegister(Shop shop);
 
+    // !根据userId获取shopId
+    @Select("SELECT shop_id FROM shop WHERE owner_id=#{userId}")
+    BigInteger getShopId(BigInteger userId);
 
 }

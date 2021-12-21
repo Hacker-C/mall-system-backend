@@ -7,6 +7,9 @@ import java.sql.Timestamp;
 
 @Data
 public class OrderDetail {
+    private BigInteger detailId;
+    private String orderNumber;
+    private BigInteger productId;
     private String imgSrc;
     private String productName;
     private Double productPrice;
