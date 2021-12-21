@@ -1,9 +1,6 @@
 package top.mphy.mallbackend.mapper;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import top.mphy.mallbackend.entity.OrderDetail;
 import top.mphy.mallbackend.entity.OrderMaster;
 
@@ -36,4 +33,8 @@ public interface OrderMapper {
     // !删除订单详情中的所有商品
     @Delete("DELETE FROM order_detail WHERE order_number=#{orderNumber}")
     void deleteP(String orderNumber);
+
+    // !取消订单
+    @Update("UPDATE order_master SET order_status=2 WHERE order_number=#{orderNumber}")
+    void cancel(String orderNumber);
 }

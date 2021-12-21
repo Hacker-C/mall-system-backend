@@ -42,5 +42,8 @@ public class OrderService {
         orderMapper.deleteP(orderNumber);
     }
 
+    public void cancel(String orderNumber) {
+        orderMapper.cancel(orderNumber);
+    }
 
 }

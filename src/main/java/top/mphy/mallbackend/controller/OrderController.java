@@ -1,5 +1,6 @@
 package top.mphy.mallbackend.controller;
 
+import lombok.experimental.PackagePrivate;
 import org.springframework.web.bind.annotation.*;
 import top.mphy.mallbackend.common.ResponseData;
 import top.mphy.mallbackend.common.ResponseDataUtils;
@@ -53,6 +54,13 @@ public class OrderController {
         orderService.deleteP(orderNumber);
         orderService.deleteO(orderNumber);
         return ResponseDataUtils.buildSuccess("0", "订单删除成功！");
+    }
+
+    // !取消订单
+    @PatchMapping("/cancel/{orderNumber}")
+    public ResponseData<?> cancel(@PathVariable String orderNumber) {
+        orderService.cancel(orderNumber);
+        return ResponseDataUtils.buildSuccess("0", "订单取消成功！");
     }
 
 }
