@@ -13,6 +13,7 @@ public class Shop {
     private String username;
     private String realName;
     private Timestamp createTime;
+    private Double income;
     private String telephone;
     private String password;
 }
