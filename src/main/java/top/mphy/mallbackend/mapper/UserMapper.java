@@ -2,6 +2,7 @@ package top.mphy.mallbackend.mapper;
 
 import org.apache.ibatis.annotations.*;
 import org.springframework.web.bind.annotation.RequestBody;
+import top.mphy.mallbackend.entity.Password;
 import top.mphy.mallbackend.entity.Shop;
 import top.mphy.mallbackend.entity.User;
 
@@ -106,5 +107,9 @@ public interface UserMapper {
     // !根据userId获取shopId
     @Select("SELECT shop_id FROM shop WHERE owner_id=#{userId}")
     BigInteger getShopId(BigInteger userId);
+
+    // !用户修改密码
+    @Update("UPDATE `user` SET `password`=#{newPassword} WHERE user_id=#{userId}")
+    void setPassword(Password password);
 
 }

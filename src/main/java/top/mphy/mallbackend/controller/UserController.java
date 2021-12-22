@@ -3,6 +3,7 @@ package top.mphy.mallbackend.controller;
 import org.springframework.web.bind.annotation.*;
 import top.mphy.mallbackend.common.ResponseData;
 import top.mphy.mallbackend.common.ResponseDataUtils;
+import top.mphy.mallbackend.entity.Password;
 import top.mphy.mallbackend.entity.Shop;
 import top.mphy.mallbackend.entity.User;
 import top.mphy.mallbackend.service.UserService;
@@ -160,5 +161,12 @@ public class UserController {
     @GetMapping("/shop_id/{userId}")
     public BigInteger getShopId(@PathVariable BigInteger userId) {
         return userService.getShopId(userId);
+    }
+
+    // !修改密码
+    @PostMapping("/password")
+    public ResponseData<?> setPassword(@RequestBody Password password) {
+        userService.setPassword(password);
+        return ResponseDataUtils.buildSuccess("0", "密码修改成功！");
     }
 }

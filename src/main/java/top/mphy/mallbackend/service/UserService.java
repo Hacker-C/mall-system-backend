@@ -3,6 +3,7 @@ package top.mphy.mallbackend.service;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
+import top.mphy.mallbackend.entity.Password;
 import top.mphy.mallbackend.entity.Shop;
 import top.mphy.mallbackend.entity.User;
 import top.mphy.mallbackend.mapper.UserMapper;
@@ -103,6 +104,10 @@ public class UserService {
 
     public BigInteger getShopId(BigInteger userId) {
         return userMapper.getShopId(userId);
+    }
+
+    public void setPassword(Password password) {
+        userMapper.setPassword(password);
     }
 
 }
