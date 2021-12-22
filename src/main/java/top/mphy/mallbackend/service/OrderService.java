@@ -46,4 +46,14 @@ public class OrderService {
         orderMapper.cancel(orderNumber);
     }
 
+    // !获取用户余额
+    public Double getUserMoney(BigInteger userId) {
+        return orderMapper.getUserMoney(userId);
+    }
+
+    public void pay(String orderNumber, BigInteger userId, Double payMoney) {
+        orderMapper.setPayStatus(orderNumber);
+        orderMapper.pay(payMoney, userId);
+    }
+
 }

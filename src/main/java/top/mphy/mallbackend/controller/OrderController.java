@@ -1,11 +1,11 @@
 package top.mphy.mallbackend.controller;
 
-import lombok.experimental.PackagePrivate;
 import org.springframework.web.bind.annotation.*;
 import top.mphy.mallbackend.common.ResponseData;
 import top.mphy.mallbackend.common.ResponseDataUtils;
 import top.mphy.mallbackend.entity.OrderDetail;
 import top.mphy.mallbackend.entity.OrderMaster;
+import top.mphy.mallbackend.entity.PayInfo;
 import top.mphy.mallbackend.service.OrderService;
 
 import java.math.BigInteger;
@@ -51,7 +51,7 @@ public class OrderController {
     // !删除订单
     @DeleteMapping("/{orderNumber}")
     public ResponseData<?> deleteOrder(@PathVariable String orderNumber) {
-        orderService.deleteP(orderNumber);
+//        orderService.deleteP(orderNumber);
         orderService.deleteO(orderNumber);
         return ResponseDataUtils.buildSuccess("0", "订单删除成功！");
     }
@@ -61,6 +61,22 @@ public class OrderController {
     public ResponseData<?> cancel(@PathVariable String orderNumber) {
         orderService.cancel(orderNumber);
         return ResponseDataUtils.buildSuccess("0", "订单取消成功！");
+    }
+
+    // !支付
+    @PostMapping("/pay")
+    public ResponseData<?> pay(@RequestBody PayInfo payInfo) {
+        BigInteger userId = payInfo.getUserId();
+        String orderNumber = payInfo.getOrderNumber();
+        Double payMoney = payInfo.getPayMoney();
+        Double leftMoney = orderService.getUserMoney(userId);
+        if (leftMoney < payInfo.getPayMoney()) {
+            return ResponseDataUtils.buildSuccess("1", "账户余额不足，请充值！");
+        }
+
+        // !设置为支付状态（待收货）
+        orderService.pay(orderNumber, userId, payMoney);
+        return ResponseDataUtils.buildSuccess("0", "支付成功！");
     }
 
 }

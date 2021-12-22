@@ -19,15 +19,15 @@ public interface OrderMapper {
     void add(OrderDetail orderDetail);
 
     // !获取某用户得全部订单信息
-    @Select("SELECT * FROM order_master WHERE buyer_id=#{buyerId}")
+    @Select("SELECT * FROM order_master WHERE buyer_id=#{buyerId} AND order_status<4")
     List<OrderMaster> findById(BigInteger buyerId);
 
     // !根据用户id获取订单数
-    @Select("SELECT count(*) FROM order_master WHERE buyer_id=#{userId}")
+    @Select("SELECT count(*) FROM order_master WHERE buyer_id=#{userId} AND order_status<4")
     BigInteger count(BigInteger userId);
 
     // !删除订单信息
-    @Delete("DELETE FROM order_master WHERE order_number=#{orderNumber}")
+    @Delete("UPDATE order_master SET order_status=4 WHERE order_number=#{orderNumber}")
     void deleteO(String orderNumber);
 
     // !删除订单详情中的所有商品
@@ -37,4 +37,18 @@ public interface OrderMapper {
     // !取消订单
     @Update("UPDATE order_master SET order_status=2 WHERE order_number=#{orderNumber}")
     void cancel(String orderNumber);
+
+    // !获取用户余额
+    @Select("SELECT money FROM `user` WHERE user_id=#{userId}")
+    Double getUserMoney(BigInteger userId);
+
+    // !支付
+    @Update("UPDATE order_master SET order_status=1 WHERE order_number=#{orderNumber}")
+    void setPayStatus(String orderNumber);
+
+    // !扣去用户账户余额
+    @Update("UPDATE `user` SET money=money-#{payMoney} WHERE user_id=#{userId}")
+    void pay(@Param("payMoney") Double payMoney, @Param("userId") BigInteger userId);
+
+    // TODO 店铺总收入增加
 }
