@@ -33,6 +33,7 @@ public interface UserMapper {
             "    <if test='age != 0'>age=#{age},</if>",
             "    <if test='realName != null'>real_name=#{realName},</if>",
             "    <if test='email != null'>email=#{email},</if>",
+            "    <if test='avatar != null'>avatar=#{avatar},</if>",
             "  </set>",
             "where user_id=#{userId}",
             "</script>"})
