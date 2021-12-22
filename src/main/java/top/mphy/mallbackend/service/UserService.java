@@ -110,4 +110,8 @@ public class UserService {
         userMapper.setPassword(password);
     }
 
+    public BigInteger check(BigInteger userId, BigInteger productId) {
+        return userMapper.check(userId, productId);
+    }
+
 }

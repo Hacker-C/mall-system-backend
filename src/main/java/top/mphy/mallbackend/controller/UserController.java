@@ -169,4 +169,16 @@ public class UserController {
         userService.setPassword(password);
         return ResponseDataUtils.buildSuccess("0", "密码修改成功！");
     }
+
+
+    // !查询某用户是否购买了某商品
+    @GetMapping("/check/{userId}/{productId}")
+    public ResponseData<?> check(@PathVariable BigInteger userId, @PathVariable BigInteger productId) {
+        BigInteger flag = userService.check(userId, productId);
+        if (flag==null) {
+            return ResponseDataUtils.buildSuccess("1", "购买该商品才能评价！");
+        }
+        return ResponseDataUtils.buildSuccess("0", "已购买该商品");
+    }
+
 }
