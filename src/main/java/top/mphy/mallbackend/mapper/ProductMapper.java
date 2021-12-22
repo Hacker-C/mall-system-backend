@@ -46,7 +46,7 @@ public interface ProductMapper {
     void updateProduct(Product product);
 
     // !获取某一订单的所有商品信息
-    @Select("SELECT img_src, product_name, product_price, count, count*product_price*discount as orderProductPrice FROM order_detail, product WHERE product.product_id=order_detail.product_id AND order_number=#{orderNumber}")
+    @Select("SELECT img_src, product_name, product_price, product.product_id as product_id, count, count*product_price*discount as orderProductPrice FROM order_detail, product WHERE product.product_id=order_detail.product_id AND order_number=#{orderNumber}")
     List<OrderDetail> findOrderDetail(String orderNumber);
 
     // !添加新产品

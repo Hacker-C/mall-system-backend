@@ -22,7 +22,7 @@ public interface OrderMapper {
     @Select("SELECT * FROM order_master WHERE buyer_id=#{buyerId} AND order_status<4")
     List<OrderMaster> findById(BigInteger buyerId);
 
-    // !根据用户id获取订单数
+    // !根据用户id获取订单数，可修改为待付款的订单数
     @Select("SELECT count(*) FROM order_master WHERE buyer_id=#{userId} AND order_status<4")
     BigInteger count(BigInteger userId);
 

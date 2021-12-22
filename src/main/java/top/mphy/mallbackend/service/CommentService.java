@@ -1,6 +1,7 @@
 package top.mphy.mallbackend.service;
 
 import org.springframework.stereotype.Service;
+import top.mphy.mallbackend.entity.Comment;
 import top.mphy.mallbackend.entity.DetailsComment;
 import top.mphy.mallbackend.mapper.CommentMapper;
 
@@ -22,5 +23,11 @@ public class CommentService {
     public BigInteger getCountById(BigInteger productId) {
         return commentMapper.getCountById(productId);
     }
-
+    public void comment(Comment comment) {
+        commentMapper.comment(comment);
+    }
+    public void delete(BigInteger commentId) {
+        commentMapper.delete(commentId);
+    }
 }
+
