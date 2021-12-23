@@ -115,4 +115,8 @@ public interface UserMapper {
     // !查询某用户是否购买了某商品
     @Select("SELECT order_id FROM order_master, order_detail WHERE order_master.buyer_id=#{userId} AND order_detail.product_id=#{productId} AND order_master.order_number=order_detail.order_number AND order_master.order_status=3")
     BigInteger check(@Param("userId") BigInteger userId, @Param("productId") BigInteger productId);
+
+    // !根据订单编号获取用户信息
+    @Select("SELECT * FROM `user`, order_master WHERE `user`.user_id=order_master.buyer_id AND order_master.order_number=#{orderNumber}")
+    User getUserByOrderNumber(String orderNumber);
 }

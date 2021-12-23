@@ -181,4 +181,10 @@ public class UserController {
         return ResponseDataUtils.buildSuccess("0", "已购买该商品");
     }
 
+    // !
+    @GetMapping("/order_number/{orderNumber}")
+    public User getUserByOrderNumber(@PathVariable String orderNumber) {
+        return userService.getUserByOrderNumber(orderNumber);
+    }
+
 }

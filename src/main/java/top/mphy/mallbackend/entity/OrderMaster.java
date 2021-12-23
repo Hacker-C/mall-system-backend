@@ -2,6 +2,7 @@ package top.mphy.mallbackend.entity;
 
 import lombok.Data;
 
+import java.math.BigInteger;
 import java.sql.Timestamp;
 
 @Data
@@ -18,4 +19,5 @@ public class OrderMaster {
     // 红 蓝 绿 灰
     // !订单状态：0表示待付款，1表示待收货，2表示已取消，3表示已完成
     private Integer orderStatus;
+    private BigInteger shopId;
 }

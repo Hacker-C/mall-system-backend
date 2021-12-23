@@ -114,4 +114,8 @@ public class UserService {
         return userMapper.check(userId, productId);
     }
 
+    public User getUserByOrderNumber(String orderNumber) {
+        return userMapper.getUserByOrderNumber(orderNumber);
+    }
+
 }

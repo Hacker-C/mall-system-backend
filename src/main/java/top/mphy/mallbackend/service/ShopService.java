@@ -33,4 +33,8 @@ public class ShopService {
     public Shop findByShopId(BigInteger shopId) {
         return  shopMapper.findByShopId(shopId);
     }
+
+    public BigInteger getShopId(BigInteger productId) {
+        return shopMapper.getShopId(productId);
+    }
 }

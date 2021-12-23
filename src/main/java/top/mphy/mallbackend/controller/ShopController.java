@@ -40,4 +40,9 @@ public class ShopController {
         return ResponseDataUtils.buildSuccess("0", "获取店铺信息成功！", shop);
     }
 
+    @GetMapping("/product_id/{productId}")
+    public BigInteger getShopId(@PathVariable BigInteger productId) {
+        return shopService.getShopId(productId);
+    }
+
 }

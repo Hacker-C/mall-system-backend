@@ -24,4 +24,7 @@ public interface ShopMapper {
     // !根据shop_id获取店铺信息
     @Select("SELECT * FROM shop WHERE shop_id=#{shopId}")
     Shop findByShopId(BigInteger shopId);
+
+    @Select("SELECT shop_id FROM product WHERE product_id=#{product_id}")
+    BigInteger getShopId(BigInteger product_id);
 }

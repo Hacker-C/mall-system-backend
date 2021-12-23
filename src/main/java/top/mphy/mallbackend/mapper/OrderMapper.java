@@ -3,6 +3,7 @@ package top.mphy.mallbackend.mapper;
 import org.apache.ibatis.annotations.*;
 import top.mphy.mallbackend.entity.OrderDetail;
 import top.mphy.mallbackend.entity.OrderMaster;
+import top.mphy.mallbackend.entity.Product;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
 public interface OrderMapper {
 
     // !添加一条订单信息
-    @Select("INSERT INTO order_master(order_number,buyer_id, order_amount) VALUE(#{orderNumber}, #{buyerId}, #{orderAmount})")
+    @Select("INSERT INTO order_master(order_number,buyer_id, order_amount, shop_id) VALUE(#{orderNumber}, #{buyerId}, #{orderAmount}, #{shopId})")
     void save(OrderMaster orderMaster);
 
     // !添加订单信息中每一条商品
@@ -38,6 +39,10 @@ public interface OrderMapper {
     @Update("UPDATE order_master SET order_status=2 WHERE order_number=#{orderNumber}")
     void cancel(String orderNumber);
 
+    // !发货
+    @Update("UPDATE order_master SET order_status=3 WHERE order_number=#{orderNumber}")
+    void send(String orderNumber);
+
     // !获取用户余额
     @Select("SELECT money FROM `user` WHERE user_id=#{userId}")
     Double getUserMoney(BigInteger userId);
@@ -51,4 +56,15 @@ public interface OrderMapper {
     void pay(@Param("payMoney") Double payMoney, @Param("userId") BigInteger userId);
 
     // TODO 店铺总收入增加
+
+    // !获取店家订单
+    // !分页查询
+    // SELECT * FROM order_master WHERE shop_id=1
+    @Select("SELECT * FROM order_master WHERE shop_id=#{shopId} limit #{offset},#{pageSize}")
+    List<OrderMaster> findByPage(@Param("offset") Integer offset, @Param("pageSize") Integer pageSize, @Param("shopId") BigInteger shopId);
+
+    // !获取订单数
+    @Select("SELECT count(*) FROM order_master WHERE shop_id=#{shopId}")
+    Integer countShopOrder(BigInteger shopId);
+
 }

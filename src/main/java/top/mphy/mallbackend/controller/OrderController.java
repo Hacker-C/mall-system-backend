@@ -6,7 +6,9 @@ import top.mphy.mallbackend.common.ResponseDataUtils;
 import top.mphy.mallbackend.entity.OrderDetail;
 import top.mphy.mallbackend.entity.OrderMaster;
 import top.mphy.mallbackend.entity.PayInfo;
+import top.mphy.mallbackend.entity.Product;
 import top.mphy.mallbackend.service.OrderService;
+import top.mphy.mallbackend.vo.Page;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -21,6 +23,7 @@ public class OrderController {
         this.orderService = orderService;
     }
 
+    // !添加一条订单
     @PostMapping("/master")
     public ResponseData<?> addOrderMaster(@RequestBody OrderMaster orderMaster) {
         orderService.addOrderMaster(orderMaster);
@@ -63,6 +66,13 @@ public class OrderController {
         return ResponseDataUtils.buildSuccess("0", "订单取消成功！");
     }
 
+    // !发货
+    @PatchMapping("/send/{orderNumber}")
+    public ResponseData<?> send(@PathVariable String orderNumber) {
+        orderService.cancel(orderNumber);
+        return ResponseDataUtils.buildSuccess("0", "发货成功！");
+    }
+
     // !支付
     @PostMapping("/pay")
     public ResponseData<?> pay(@RequestBody PayInfo payInfo) {
@@ -77,6 +87,22 @@ public class OrderController {
         // !设置为支付状态（待收货）
         orderService.pay(orderNumber, userId, payMoney);
         return ResponseDataUtils.buildSuccess("0", "支付成功！");
+    }
+
+    // !分页查询
+    @GetMapping("/shop")
+    public ResponseData<?> findByPage(@RequestParam(defaultValue = "1") Integer pageNum,
+                                      @RequestParam(defaultValue = "10") Integer pageSize,
+                                      @RequestParam BigInteger shopId) {
+        int offset = (pageNum - 1) * pageSize;
+        List<OrderMaster> userData = orderService.findByPage(offset, pageSize, shopId);
+        Page<OrderMaster> page = new Page<>();
+        page.setData(userData);
+        Integer total = orderService.countShopOrder(shopId);
+        page.setTotal(total);
+        page.setPageNum(pageNum);
+        page.setPageSize(pageSize);
+        return ResponseDataUtils.buildSuccess("0", "订单信息获取成功！", page);
     }
 
 }

@@ -1,8 +1,10 @@
 package top.mphy.mallbackend.service;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import top.mphy.mallbackend.entity.OrderDetail;
 import top.mphy.mallbackend.entity.OrderMaster;
+import top.mphy.mallbackend.entity.Product;
 import top.mphy.mallbackend.mapper.OrderMapper;
 
 import java.math.BigDecimal;
@@ -54,6 +56,16 @@ public class OrderService {
     public void pay(String orderNumber, BigInteger userId, Double payMoney) {
         orderMapper.setPayStatus(orderNumber);
         orderMapper.pay(payMoney, userId);
+    }
+
+    public List<OrderMaster> findByPage(@Param("offset") int offset, @Param("pageSize") int pageSize, @Param("shopId") BigInteger shopId) {
+        return orderMapper.findByPage(offset, pageSize, shopId);
+    }
+    public Integer countShopOrder(BigInteger shopId) {
+        return orderMapper.countShopOrder(shopId);
+    }
+    public void send(String orderNumber) {
+        orderMapper.send(orderNumber);
     }
 
 }
