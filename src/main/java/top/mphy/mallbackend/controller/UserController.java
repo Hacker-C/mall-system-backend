@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.*;
 import top.mphy.mallbackend.common.ResponseData;
 import top.mphy.mallbackend.common.ResponseDataUtils;
 import top.mphy.mallbackend.entity.Password;
+import top.mphy.mallbackend.entity.RoleCount;
 import top.mphy.mallbackend.entity.Shop;
 import top.mphy.mallbackend.entity.User;
 import top.mphy.mallbackend.service.UserService;
@@ -185,6 +186,12 @@ public class UserController {
     @GetMapping("/order_number/{orderNumber}")
     public User getUserByOrderNumber(@PathVariable String orderNumber) {
         return userService.getUserByOrderNumber(orderNumber);
+    }
+
+    // !
+    @GetMapping("/role/count")
+    public RoleCount getRoleCount() {
+        return userService.getRoleCount();
     }
 
 }

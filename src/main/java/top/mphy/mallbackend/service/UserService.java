@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import top.mphy.mallbackend.entity.Password;
+import top.mphy.mallbackend.entity.RoleCount;
 import top.mphy.mallbackend.entity.Shop;
 import top.mphy.mallbackend.entity.User;
 import top.mphy.mallbackend.mapper.UserMapper;
@@ -118,4 +119,7 @@ public class UserService {
         return userMapper.getUserByOrderNumber(orderNumber);
     }
 
+    public RoleCount getRoleCount() {
+        return userMapper.getRoleCount();
+    }
 }

@@ -3,6 +3,7 @@ package top.mphy.mallbackend.mapper;
 import org.apache.ibatis.annotations.*;
 import org.springframework.web.bind.annotation.RequestBody;
 import top.mphy.mallbackend.entity.Password;
+import top.mphy.mallbackend.entity.RoleCount;
 import top.mphy.mallbackend.entity.Shop;
 import top.mphy.mallbackend.entity.User;
 
@@ -119,4 +120,8 @@ public interface UserMapper {
     // !根据订单编号获取用户信息
     @Select("SELECT * FROM `user`, order_master WHERE `user`.user_id=order_master.buyer_id AND order_master.order_number=#{orderNumber}")
     User getUserByOrderNumber(String orderNumber);
+
+    // !获取角色数
+    @Select("SELECT (SELECT count(*) FROM `user` WHERE role='admin') AS admin,  (SELECT count(*) FROM `user` WHERE role='shop') AS shop,  (SELECT count(*) FROM `user` WHERE role='user') AS 'user'")
+    RoleCount getRoleCount();
 }
