@@ -56,4 +56,8 @@ public interface ProductMapper {
     // !根据shopId 获取所有商品
     @Select("SELECT * FROM product WHERE shop_id=#{shopId}")
     List<Product> findByShopId(BigInteger shopId);
+
+    // !搜索
+    @Select("SELECT * FROM product WHERE CONCAT(product_name,' ', product_desc) LIKE '%${key}%'")
+    List<Product> search(String key);
 }

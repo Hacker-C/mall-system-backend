@@ -69,4 +69,8 @@ public class ProductService {
         return productMapper.findByShopId(shopId);
     }
 
+    public List<Product> search(String key) {
+        return productMapper.search(key);
+    }
+
 }

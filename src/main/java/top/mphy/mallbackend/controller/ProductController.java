@@ -86,8 +86,15 @@ public class ProductController {
     // !根据 shopId 获取所有商品
     @GetMapping("/shop_id/{shopId}")
     public ResponseData<?> findByShopId(@PathVariable BigInteger shopId) {
-        List<Product> products =  productService.findByShopId(shopId);
+        List<Product> products = productService.findByShopId(shopId);
         return ResponseDataUtils.buildSuccess("0", "该店商品信息获取成功！", products);
+    }
+
+    // !搜索
+    @GetMapping("/search")
+    public ResponseData<?> search(@RequestParam(defaultValue = "") String key) {
+        List<Product> products = productService.search(key);
+        return ResponseDataUtils.buildSuccess("0", "搜索成功！", products);
     }
 
 }
