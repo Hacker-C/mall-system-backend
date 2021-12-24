@@ -5,7 +5,7 @@ spring:
   profiles:
     active: dev
   jackson:
-    date-format: yyyy-MM-dd hh:mm:ss
+    date-format: yyyy-MM-dd HH:mm:ss
   datasource:
     # 数据库驱动
     driver-class-name: com.mysql.cj.jdbc.Driver

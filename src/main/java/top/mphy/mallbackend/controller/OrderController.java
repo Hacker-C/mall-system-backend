@@ -69,7 +69,7 @@ public class OrderController {
     // !发货
     @PatchMapping("/send/{orderNumber}")
     public ResponseData<?> send(@PathVariable String orderNumber) {
-        orderService.cancel(orderNumber);
+        orderService.send(orderNumber);
         return ResponseDataUtils.buildSuccess("0", "发货成功！");
     }
 
