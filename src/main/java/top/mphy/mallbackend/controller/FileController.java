@@ -18,20 +18,20 @@ import java.io.OutputStream;
 import java.net.URLEncoder;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:8080", maxAge = 3600)
+@CrossOrigin(origins = "http://119.23.46.102:8081", maxAge = 3600)
 @RestController
 @RequestMapping("/files")
 public class FileController {
     @Value("${server.port}")
     private String port;
 
-    private static final String ip = "http://localhost";
+    private static final String ip = "http://119.23.46.102";
 
     @PostMapping("/upload")
     public ResponseData<?> upload(MultipartFile file) throws IOException {
         String originalFilename =  file.getOriginalFilename();
         String flag = IdUtil.fastSimpleUUID();
-        String rootFilePath = System.getProperty("user.dir")+"/src/main/resources/files/"+ flag + "_" +originalFilename;
+        String rootFilePath = System.getProperty("user.dir")+"/resources/files/"+ flag + "_" +originalFilename;
         FileUtil.writeBytes(file.getBytes(), rootFilePath);
         String url = ip + ":" + port + "/files/" + flag;
         return ResponseDataUtils.buildSuccess("0", "成功", url);
@@ -42,7 +42,7 @@ public class FileController {
         // 新建输出流对象
         OutputStream os;
         // 文件上传的根路径
-        String basePath = System.getProperty("user.dir") + "/src/main/resources/files/";
+        String basePath = System.getProperty("user.dir") + "/resources/files/";
         // 获取所有的文件名称
         List<String> listFileNames = FileUtil.listFileNames(basePath);
         // 找到和参数 flag 一致的文件

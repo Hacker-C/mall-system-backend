@@ -8,6 +8,7 @@ import top.mphy.mallbackend.service.ShopService;
 
 import java.math.BigInteger;
 
+@CrossOrigin(origins = "http://119.23.46.102:8081", maxAge = 3600)
 @RestController
 @RequestMapping("/shop")
 public class ShopController {

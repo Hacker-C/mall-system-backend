@@ -5,7 +5,7 @@ import top.mphy.mallbackend.common.ResponseData;
 import top.mphy.mallbackend.common.ResponseDataUtils;
 import top.mphy.mallbackend.entity.Notice;
 import top.mphy.mallbackend.service.NoticeService;
-
+@CrossOrigin(origins = "http://119.23.46.102:8081", maxAge = 3600)
 @RestController
 @RequestMapping("/notice")
 public class NoticeController {

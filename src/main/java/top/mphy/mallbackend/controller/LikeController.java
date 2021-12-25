@@ -10,6 +10,7 @@ import top.mphy.mallbackend.service.LikeService;
 import java.math.BigInteger;
 import java.util.List;
 
+@CrossOrigin(origins = "http://119.23.46.102:8081", maxAge = 3600)
 @RestController
 @RequestMapping("/like")
 public class LikeController {
@@ -21,28 +22,28 @@ public class LikeController {
 
     // 获取用户的收藏商品
     @GetMapping("/{userId}")
-    public ResponseData getLikeItemsById(@PathVariable("userId") BigInteger userId) {
+    public ResponseData<?> getLikeItemsById(@PathVariable("userId") BigInteger userId) {
         List<Like> likes = likeService.findAll(userId);
         return ResponseDataUtils.buildSuccess("0", "数据获取成功！", likes);
     }
 
     // 获取用户收藏商品的总数
     @GetMapping("/count/{userId}")
-    public ResponseData countById(@PathVariable("userId") BigInteger userId) {
+    public ResponseData<?> countById(@PathVariable("userId") BigInteger userId) {
         BigInteger count = likeService.count(userId);
         return ResponseDataUtils.buildSuccess("0", "数据获取成功！", count);
     }
 
     // 用户删除收藏商品
     @DeleteMapping("/{userId}")
-    public ResponseData deleteById(@PathVariable("userId") BigInteger userId) {
+    public ResponseData<?> deleteById(@PathVariable("userId") BigInteger userId) {
         likeService.delete(userId);
         return ResponseDataUtils.buildSuccess("0", "收藏删除成功！");
     }
 
     // 用户添加收藏
     @PostMapping
-    public ResponseData addLikeItem(@RequestBody Like queryLike) {
+    public ResponseData<?> addLikeItem(@RequestBody Like queryLike) {
         BigInteger productId = queryLike.getProductId();
         BigInteger userId = queryLike.getUserId();
         Like like = likeService.findById(productId, userId);

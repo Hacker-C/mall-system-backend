@@ -10,7 +10,7 @@ spring:
     # 数据库驱动
     driver-class-name: com.mysql.cj.jdbc.Driver
     # 数据库连接地址
-    url: jdbc:mysql://127.0.0.1:3306/mall?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://127.0.0.1:3306/mall?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false
     # 数据库登录名
     username: root
     # 数据库密码
@@ -23,6 +23,10 @@ spring:
 # 应用服务 WEB 访问端口
 server:
   port: 8081
+file:
+  ip: 'localhost'
+origin:
+  ip: 'http://localhost:8080'
 # 指定Mybatis的实体目录
 mybatis:
   type-aliases-package: top.mphy.mallbackend.entity

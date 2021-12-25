@@ -10,6 +10,7 @@ import top.mphy.mallbackend.service.CommentService;
 import java.math.BigInteger;
 import java.util.List;
 
+@CrossOrigin(origins = "http://119.23.46.102:8081", maxAge = 3600)
 @RestController
 @RequestMapping("/comment")
 public class CommentController {

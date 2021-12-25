@@ -1,0 +1,51 @@
+# 应用名称
+#spring.datasource.type=com.alibaba . druid.pool.DruidDataSource
+spring:
+  application:
+    name: mall-backend
+  profiles:
+    active: prod
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  datasource:
+    # 数据库驱动
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # 数据库连接地址
+    url: jdbc:mysql://localhost:3306/mall?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&useSSL=false
+    #
+    # 数据库登录名
+    username: root
+    # 数据库密码
+    password: 'a9e05046cc2a6824'
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 30000
+      filters: stat
+      async-init: true
+  # 405 解决错误
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+# 应用服务 WEB 访问端口
+server:
+  port: 9090
+file:
+  ip: '119.23.46.102'
+# 指定Mybatis的实体目录
+mybatis:
+  type-aliases-package: top.mphy.mallbackend.entity
+  # 开启驼峰命名转换
+  configuration:
+    mapUnderscoreToCamelCase: true
+

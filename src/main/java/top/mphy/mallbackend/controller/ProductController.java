@@ -11,6 +11,7 @@ import top.mphy.mallbackend.vo.Page;
 import java.math.BigInteger;
 import java.util.List;
 
+@CrossOrigin(origins = "http://119.23.46.102:8081", maxAge = 3600)
 @RestController
 @RequestMapping("/product")
 public class ProductController {
