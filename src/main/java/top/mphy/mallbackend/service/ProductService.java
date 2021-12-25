@@ -73,4 +73,8 @@ public class ProductService {
         return productMapper.search(key);
     }
 
+    public void deleteP(BigInteger productId) {
+        productMapper.deleteP(productId);
+    }
+
 }

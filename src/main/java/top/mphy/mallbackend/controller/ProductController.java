@@ -98,4 +98,11 @@ public class ProductController {
         return ResponseDataUtils.buildSuccess("0", "搜索成功！", products);
     }
 
+    // !删除商品
+    @DeleteMapping("/{productId}")
+    public ResponseData<?> deleteP(@PathVariable BigInteger productId) {
+        productService.deleteP(productId);
+        return ResponseDataUtils.buildSuccess("0", "删除商品成功！");
+    }
+
 }

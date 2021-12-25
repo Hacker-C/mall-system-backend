@@ -1,9 +1,7 @@
 package top.mphy.mallbackend.mapper;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import top.mphy.mallbackend.entity.OrderDetail;
 import top.mphy.mallbackend.entity.Product;
 
@@ -60,4 +58,8 @@ public interface ProductMapper {
     // !搜索
     @Select("SELECT * FROM product WHERE CONCAT(product_name,' ', product_desc) LIKE '%${key}%'")
     List<Product> search(String key);
+
+    // !删除商品
+    @Delete("DELETE FROM  product WHERE product_id=#{productId}")
+    void deleteP(BigInteger productId);
 }
