@@ -187,16 +187,18 @@ public class UserController {
         return ResponseDataUtils.buildSuccess("0", "已购买该商品");
     }
 
-    // !
-    @GetMapping("/order_number/{orderNumber}")
-    public User getUserByOrderNumber(@PathVariable String orderNumber) {
-        return userService.getUserByOrderNumber(orderNumber);
-    }
 
     // !
     @GetMapping("/role/count")
     public RoleCount getRoleCount() {
         return userService.getRoleCount();
     }
+    // !
+    @GetMapping("/order_number/{orderNumber}")
+    public User getUserByOrderNumber(@PathVariable String orderNumber) {
+        return userService.getUserByOrderNumber(orderNumber);
+    }
+
+   
 
 }
