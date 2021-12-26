@@ -130,12 +130,7 @@ public class UserController {
         return ResponseDataUtils.buildSuccess("0", "删除用户成功！");
     }
 
-    // !添加新用户
-    @PostMapping("/add")
-    public ResponseData<?> addNew(@RequestBody User user) {
-        userService.addNew(user);
-        return ResponseDataUtils.buildSuccess("0", "添加新用户成功！");
-    }
+ 
 
     // !充值
     @PatchMapping("/recharge")
@@ -146,6 +141,13 @@ public class UserController {
         System.out.println(addMoney);
         userService.recharge(userId, addMoney);
         return ResponseDataUtils.buildSuccess("0", "充值成功！");
+    }
+	
+	   // !添加新用户
+    @PostMapping("/add")
+    public ResponseData<?> addNew(@RequestBody User user) {
+        userService.addNew(user);
+        return ResponseDataUtils.buildSuccess("0", "添加新用户成功！");
     }
 
     // !店家注册
