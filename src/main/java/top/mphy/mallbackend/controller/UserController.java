@@ -52,7 +52,7 @@ public class UserController {
     }
 
 
-    // !登录验证
+    // !  登录验证
     @PostMapping("/login")
     public ResponseData<?> login(@RequestBody User queryUser) {
         // queryUser: 前端传过来的用户对象
@@ -82,15 +82,7 @@ public class UserController {
         return ResponseDataUtils.buildSuccess("0", "注册成功！");
     }
 
-    // !根据用户ID获取用户信息
-    @GetMapping("/{userId}")
-    public ResponseData<?> getUserById(@PathVariable("userId")BigInteger userId) {
-        User user = userService.getUserById(userId);
-        if (user == null) {
-            return ResponseDataUtils.buildSuccess("1", "未查询到该用户！");
-        }
-        return ResponseDataUtils.buildSuccess("0", "查询用户信息成功！", user);
-    }
+   
 
     // !更新用户信息
     @PutMapping("/{id}")
@@ -105,6 +97,16 @@ public class UserController {
     public ResponseData<?> changeStatus(@PathVariable("userId") BigInteger userId, @PathVariable("status") BigInteger status) {
         userService.setStatus(userId, status);
         return ResponseDataUtils.buildSuccess("0", "修改用户信息成功！");
+    }
+	
+	 // !根据用户ID获取用户信息
+    @GetMapping("/{userId}")
+    public ResponseData<?> getUserById(@PathVariable("userId")BigInteger userId) {
+        User user = userService.getUserById(userId);
+        if (user == null) {
+            return ResponseDataUtils.buildSuccess("1", "未查询到该用户！");
+        }
+        return ResponseDataUtils.buildSuccess("0", "查询用户信息成功！", user);
     }
 
     // !更新账户信息
@@ -128,12 +130,7 @@ public class UserController {
         return ResponseDataUtils.buildSuccess("0", "删除用户成功！");
     }
 
-    // !添加新用户
-    @PostMapping("/add")
-    public ResponseData<?> addNew(@RequestBody User user) {
-        userService.addNew(user);
-        return ResponseDataUtils.buildSuccess("0", "添加新用户成功！");
-    }
+ 
 
     // !充值
     @PatchMapping("/recharge")
@@ -144,6 +141,13 @@ public class UserController {
         System.out.println(addMoney);
         userService.recharge(userId, addMoney);
         return ResponseDataUtils.buildSuccess("0", "充值成功！");
+    }
+	
+	   // !添加新用户
+    @PostMapping("/add")
+    public ResponseData<?> addNew(@RequestBody User user) {
+        userService.addNew(user);
+        return ResponseDataUtils.buildSuccess("0", "添加新用户成功！");
     }
 
     // !店家注册
@@ -183,16 +187,18 @@ public class UserController {
         return ResponseDataUtils.buildSuccess("0", "已购买该商品");
     }
 
-    // !
-    @GetMapping("/order_number/{orderNumber}")
-    public User getUserByOrderNumber(@PathVariable String orderNumber) {
-        return userService.getUserByOrderNumber(orderNumber);
-    }
 
     // !
     @GetMapping("/role/count")
     public RoleCount getRoleCount() {
         return userService.getRoleCount();
     }
+    // !
+    @GetMapping("/order_number/{orderNumber}")
+    public User getUserByOrderNumber(@PathVariable String orderNumber) {
+        return userService.getUserByOrderNumber(orderNumber);
+    }
+
+   
 
 }
