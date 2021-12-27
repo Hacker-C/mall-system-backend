@@ -104,4 +104,74 @@ Web期末大作业后端项目仓库
   - [x] 管理系统的公告
     - [x] 编辑公告内容
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+### 接口文档
+
+## 1. 统一接口文档
+
+后端统一返回格式：demo例子。
+
+```plain
+{
+	"code": "0",
+  "msg": "登录成功",
+  "data": null
+}
+```
+
+- code："0"代表操作成功，"1"或者"2"等代表其他
+- msg：返回信息
+
+- data：返回数据
+
+## 2. RESTful 接口风格
+
+接口设计原则：请求 = 动词 + 宾语
+增删改查：
+
+- 增：POST
+- 删：DELETE
+
+- 改（全部修改）：PUT
+- 改（部分修改）：PATCH
+
+- 查：GET
+
+## 3. 相关接口
+
+1.  `/user` 
+    -  获取所有用户：`GET`： 
+    -  登录验证：`/login`（`POST`）
+    - 前端传入和参数：`  {"username": "user", "password": "user1234"}`
+    - `/register`（`POST`）
+    - 前端传入和参数： `{"username": "test",   "password": "test123"}`
+    - 后端返回数据，登录成功：`  {"code": "0", "msg": "登录成功", "data": null}`
+    - 后端返回数据，登录成功：` {code: "1",   msg: "登录失败",   "data": null}`
+2. `/product` 
+    -  `/product/all`：`GET` 请求，获取所有商品 
+    -  `/product/{id}`：`GET` 请求，根据商品ID获取商品信息及 
+    -  `/product/shop`：`POST` 请求，根据店铺id获取店内所有商品 
+    -  `/product`：`PUT` 请求，更新商品信息 
+    -  `/product`：`POST` ：`POST`请求，添加商品 
+    -  `/product/search`：`GET` 请求，首页搜索 
+    -  `/product/{productId`：`DELETE` 请求，删除商品
+3. `/order`
+    - `/order/master`：`POST` 请求，添加订单
+    - `/order/detail`：`POST` 添加订单中的每一天商品信息
+    - `/order/{buyerId}`：`GET` 获取用户的所有订单
+4.  `/files/upload`
+    - 文件上传（图片）
+
+5. `/like`
+
+   - `/like/{userId}`：`GET` 请求，获取用户收藏
+   - `/like/{userId}`：`DELETE` 请求，删除用户收藏
+   - `/like`：`POST` 请求，用户添加收藏
+
+6. `/shop`
+
+   - `/shop`：`POST` ：`POST`请求，商家开店
+   - `/shop/{userId}`：`GET` 请求，获取店铺信息
+
+   
