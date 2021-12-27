@@ -48,7 +48,7 @@ public interface ProductMapper {
     List<OrderDetail> findOrderDetail(String orderNumber);
 
     // !添加新产品
-    @Insert("INSERT INTO product(product_name,product_price,category_id,weight,product_desc,discount,`left`,img_src, shop_id) VALUE(#{productName},#{productPrice},#{categoryId},#{weight},#{productDesc},#{discount},#{left},#{imgSrc},#{shopId})")
+    @Insert("INSERT INTO product(product_name,product_price,category_id,weight,product_desc,discount,`left`,img_src, shop_id, sold) VALUE(#{productName},#{productPrice},#{categoryId},#{weight},#{productDesc},#{discount},#{left},#{imgSrc},#{shopId},#{sold})")
     void addProduct(Product product);
 
     // !根据shopId 获取所有商品
