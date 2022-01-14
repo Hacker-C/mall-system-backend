@@ -31,7 +31,6 @@ public interface ProductMapper {
     //    List <Product> findByShopId(BigInteger ownerId);
 
     // !分页查询
-    // SELECT * FROM product WHERE shop_id=(SELECT shop_id FROM shop WHERE owner_id=2)
     @Select("SELECT * FROM product WHERE shop_id=(SELECT shop_id FROM shop WHERE owner_id=#{ownerId}) AND product_name like '%${key}%' limit #{offset},#{pageSize}")
     List<Product> findByPage(@Param("offset") Integer offset, @Param("pageSize") Integer pageSize, @Param("key") String key, @Param("ownerId") Integer ownerId);
 

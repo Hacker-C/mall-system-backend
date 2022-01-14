@@ -3,16 +3,13 @@ package top.mphy.mallbackend.controller;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import top.mphy.mallbackend.common.ResponseData;
 import top.mphy.mallbackend.common.ResponseDataUtils;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.rowset.serial.SerialStruct;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URLEncoder;
