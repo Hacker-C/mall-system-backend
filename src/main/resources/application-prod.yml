@@ -16,7 +16,7 @@ spring:
     # 数据库登录名
     username: root
     # 数据库密码
-    password: 'a9e05046cc2a6824'
+    password: 'mphy0316'
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       initial-size: 5
@@ -41,7 +41,7 @@ spring:
 server:
   port: 9090
 file:
-  ip: '119.23.46.102'
+  ip: '124.222.44.115'
 # 指定Mybatis的实体目录
 mybatis:
   type-aliases-package: top.mphy.mallbackend.entity

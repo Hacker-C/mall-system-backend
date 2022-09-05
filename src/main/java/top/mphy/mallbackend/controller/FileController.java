@@ -22,7 +22,7 @@ public class FileController {
     @Value("${server.port}")
     private String port;
 
-    private static final String ip = "http://119.23.46.102";
+    private static final String ip = "http://124.222.44.115";
 
     @PostMapping("/upload")
     public ResponseData<?> upload(MultipartFile file) throws IOException {

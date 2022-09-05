@@ -10,11 +10,11 @@ spring:
     # 数据库驱动
     driver-class-name: com.mysql.cj.jdbc.Driver
     # 数据库连接地址
-    url: jdbc:mysql://127.0.0.1:3306/mall?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://localhost:3306/mall?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false
     # 数据库登录名
     username: root
     # 数据库密码
-    password: '0316'
+    password: 'mphy0316'
   # 405 解决错误
   mvc:
     hiddenmethod:
@@ -22,11 +22,11 @@ spring:
         enabled: true
 # 应用服务 WEB 访问端口
 server:
-  port: 8081
+  port: 9092
 file:
-  ip: 'localhost'
+  ip: '124.222.44.115'
 origin:
-  ip: 'http://localhost:8080'
+  ip: 'http://localhost:9091'
 # 指定Mybatis的实体目录
 mybatis:
   type-aliases-package: top.mphy.mallbackend.entity

@@ -14,7 +14,7 @@ public class GlobalCorsConfig {
         CorsConfiguration config = new CorsConfiguration();
         //放行哪些原始域
         config.addAllowedOrigin("http://localhost:8080");
-        config.addAllowedOrigin("http://119.23.46.102:8081");
+        config.addAllowedOrigin("http://124.222.44.115:9091");
         //是否发送 Cookie
         config.setAllowCredentials(true);
         //放行哪些请求方式
