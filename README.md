@@ -1,36 +1,31 @@
-
-## 在线商城系统
-
-Web期末大作业后端项目仓库
-<a href="http://119.23.46.102:8081/home" target="blank">查看Demo</a>
-
-
+# 商城系统
 
 ## 关于
 
-期末大作业后端，一个二手书交易商城平台。
-
-![a](https://cdn.jsdelivr.net/gh/Hacker-C/Picture-Bed@main/javaweb/home.4cevksvgsy60.webp)
+一个基于 SpringBoot + MySQL 的具有客户、商家、管理员三种模式的商城系统。
 
 
+
+数据库文件已经更新。
+
+
+
+这里是后端部分，前端部分以及界面示例请前往：https://github.com/Hacker-C/mall-system
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 ## 技术栈
 
 项目后端所使用的技术栈。
 
 - SpringBoot
-- MyBatis
 - MySQL
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-## 基本环境
+## 开发环境
 
-项目环境。本项目环境由 `pom.xml` 统一管理，部分环境版本如下。
+本项目环境由 `pom.xml` 统一管理，部分环境版本如下。
 
 - SpringBoot：v2.3.7
 * jdk：v1.8
@@ -82,6 +77,8 @@ Web期末大作业后端项目仓库
     - [x] 取消订单
     - [x] 对订单进行发货
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 ### 管理员模块
 
 - [x] 对商家进行管理
@@ -104,11 +101,9 @@ Web期末大作业后端项目仓库
   - [x] 管理系统的公告
     - [x] 编辑公告内容
 
+## 接口文档
 
-
-### 接口文档
-
-## 1. 统一接口文档
+### 1. 统一接口文档
 
 后端统一返回格式：demo例子。
 
@@ -125,7 +120,7 @@ Web期末大作业后端项目仓库
 
 - data：返回数据
 
-## 2. RESTful 接口风格
+### 2. RESTful 接口风格
 
 接口设计原则：请求 = 动词 + 宾语
 增删改查：
@@ -138,9 +133,10 @@ Web期末大作业后端项目仓库
 
 - 查：GET
 
-## 3. 相关接口
+### 3. 相关接口
 
 1.  `/user` 
+    
     -  获取所有用户：`GET`： 
     -  登录验证：`/login`（`POST`）
     - 前端传入和参数：`  {"username": "user", "password": "user1234"}`
